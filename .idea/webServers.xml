@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="089111ec-f36f-46d5-b9b0-97e12e628742" name="xixilili.cn" url="http://xixilili.cn">
+        <fileTransfer host="xixilili.cn" port="22" rootFolder="/home/ubuntu/graduation/myapp" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
