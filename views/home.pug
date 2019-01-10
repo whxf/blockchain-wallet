@@ -1,351 +1,38 @@
-extends ../public/stylesheets/_bootstrap
-append styles
-    // Bootstrap theme
-    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css")
-    // Custom styles for this template
-    link(href='../css/theme.css', rel='stylesheet')
-block body
-    // Fixed navbar
-    nav.navbar.navbar-inverse.navbar-fixed-top
-        .container
-            .navbar-header
-                button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
-                    span.sr-only Toggle navigation
-                    span.icon-bar
-                    span.icon-bar
-                    span.icon-bar
-                a.navbar-brand(href='#') Bootstrap theme
-            #navbar.navbar-collapse.collapse
-                ul.nav.navbar-nav
-                    li.active
-                        a(href='#') Home
-                    li
-                        a(href='#about') About
-                    li
-                        a(href='#contact') Contact
-                    li.dropdown
-                        a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
-                            | Dropdown
-                            span.caret
-                        ul.dropdown-menu(role='menu')
-                            li
-                                a(href='#') Action
-                            li
-                                a(href='#') Another action
-                            li
-                                a(href='#') Something else here
-                            li.divider
-                            li.dropdown-header Nav header
-                            li
-                                a(href='#') Separated link
-                            li
-                                a(href='#') One more separated link
+extends layout
 
-    .container.theme-showcase(role='main')
-        // Main jumbotron for a primary marketing message or call to action
-        .jumbotron
-            h1 Theme example
-            p
-                | This is a template showcasing the optional theme stylesheet included in Bootstrap. Use it as a starting point to create something more unique by building on or modifying it.
-        .page-header
-            h1 Buttons
-        p
-            button.btn.btn-lg.btn-default(type='button') Default
-            button.btn.btn-lg.btn-primary(type='button') Primary
-            button.btn.btn-lg.btn-success(type='button') Success
-            button.btn.btn-lg.btn-info(type='button') Info
-            button.btn.btn-lg.btn-warning(type='button') Warning
-            button.btn.btn-lg.btn-danger(type='button') Danger
-            button.btn.btn-lg.btn-link(type='button') Link
-        p
-            button.btn.btn-default(type='button') Default
-            button.btn.btn-primary(type='button') Primary
-            button.btn.btn-success(type='button') Success
-            button.btn.btn-info(type='button') Info
-            button.btn.btn-warning(type='button') Warning
-            button.btn.btn-danger(type='button') Danger
-            button.btn.btn-link(type='button') Link
-        p
-            button.btn.btn-sm.btn-default(type='button') Default
-            button.btn.btn-sm.btn-primary(type='button') Primary
-            button.btn.btn-sm.btn-success(type='button') Success
-            button.btn.btn-sm.btn-info(type='button') Info
-            button.btn.btn-sm.btn-warning(type='button') Warning
-            button.btn.btn-sm.btn-danger(type='button') Danger
-            button.btn.btn-sm.btn-link(type='button') Link
-        p
-            button.btn.btn-xs.btn-default(type='button') Default
-            button.btn.btn-xs.btn-primary(type='button') Primary
-            button.btn.btn-xs.btn-success(type='button') Success
-            button.btn.btn-xs.btn-info(type='button') Info
-            button.btn.btn-xs.btn-warning(type='button') Warning
-            button.btn.btn-xs.btn-danger(type='button') Danger
-            button.btn.btn-xs.btn-link(type='button') Link
-        .page-header
-            h1 Tables
-        .row
-            .col-md-6
-                +table(["#", "First Name", "Last Name", "Username"],[["1", "Mark", "Otto", "@mdo"], ["2", "Jacob", "Thornton", "@fat"], ["3", "Larry", "the Bird", "@twitter"]])
-            .col-md-6
-                +table-striped(["#", "First Name", "Last Name", "Username"],[["1", "Mark", "Otto", "@mdo"], ["2", "Jacob", "Thornton", "@fat"], ["3", "Larry", "the Bird", "@twitter"]])
-        .row
-            .col-md-6
-                +table-bordered(["#", "First Name", "Last Name", "Username"],[["1", "Mark", "Otto", "@mdo"], ["2", "Jacob", "Thornton", "@fat"], ["3", "Larry", "the Bird", "@twitter"]])
-            .col-md-6
-                +table-condensed(["#", "First Name", "Last Name", "Username"],[["1", "Mark", "Otto", "@mdo"], ["2", "Jacob", "Thornton", "@fat"], ["3", "Larry", "the Bird", "@twitter"]])
-        .page-header
-            h1 Thumbnails
-        img.img-thumbnail(src='../images/thumb.jpg', alt='A generic square placeholder image with a white border around it, making it resemble a photograph taken with an old instant camera')
-        .page-header
-            h1 Labels
-        h1
-            span.label.label-default Default
-            span.label.label-primary Primary
-            span.label.label-success Success
-            span.label.label-info Info
-            span.label.label-warning Warning
-            span.label.label-danger Danger
-        h2
-            span.label.label-default Default
-            span.label.label-primary Primary
-            span.label.label-success Success
-            span.label.label-info Info
-            span.label.label-warning Warning
-            span.label.label-danger Danger
-        h3
-            span.label.label-default Default
-            span.label.label-primary Primary
-            span.label.label-success Success
-            span.label.label-info Info
-            span.label.label-warning Warning
-            span.label.label-danger Danger
-        h4
-            span.label.label-default Default
-            span.label.label-primary Primary
-            span.label.label-success Success
-            span.label.label-info Info
-            span.label.label-warning Warning
-            span.label.label-danger Danger
-        h5
-            span.label.label-default Default
-            span.label.label-primary Primary
-            span.label.label-success Success
-            span.label.label-info Info
-            span.label.label-warning Warning
-            span.label.label-danger Danger
-        h6
-            span.label.label-default Default
-            span.label.label-primary Primary
-            span.label.label-success Success
-            span.label.label-info Info
-            span.label.label-warning Warning
-            span.label.label-danger Danger
-        p
-            span.label.label-default Default
-            span.label.label-primary Primary
-            span.label.label-success Success
-            span.label.label-info Info
-            span.label.label-warning Warning
-            span.label.label-danger Danger
-        .page-header
-            h1 Badges
-        p
-            a(href='#')
-                | Inbox
-                span.badge 42
-        ul.nav.nav-pills(role='tablist')
-            li.active(role='presentation')
-                a(href='#')
-                    | Home
-                    span.badge 42
-            li(role='presentation')
-                a(href='#') Profile
-            li(role='presentation')
-                a(href='#')
-                    | Messages
-                    span.badge 3
-        .page-header
-            h1 Dropdown menus
-        .dropdown.theme-dropdown.clearfix
-            a#dropdownMenu1.sr-only.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
-                | Dropdown
-                span.caret
-            ul.dropdown-menu(role='menu', aria-labelledby='dropdownMenu1')
-                li.active(role='presentation')
-                    a(role='menuitem', tabindex='-1', href='#') Action
-                li(role='presentation')
-                    a(role='menuitem', tabindex='-1', href='#') Another action
-                li(role='presentation')
-                    a(role='menuitem', tabindex='-1', href='#') Something else here
-                li.divider(role='presentation')
-                li(role='presentation')
-                    a(role='menuitem', tabindex='-1', href='#') Separated link
-        .page-header
-            h1 Navs
-        ul.nav.nav-tabs(role='tablist')
-            li.active(role='presentation')
-                a(href='#') Home
-            li(role='presentation')
-                a(href='#') Profile
-            li(role='presentation')
-                a(href='#') Messages
-        ul.nav.nav-pills(role='tablist')
-            li.active(role='presentation')
-                a(href='#') Home
-            li(role='presentation')
-                a(href='#') Profile
-            li(role='presentation')
-                a(href='#') Messages
-        .page-header
-            h1 Navbars
-        nav.navbar.navbar-default
-            .container
-                .navbar-header
-                    button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='.navbar-collapse')
-                        span.sr-only Toggle navigation
-                        span.icon-bar
-                        span.icon-bar
-                        span.icon-bar
-                    a.navbar-brand(href='#') Project name
-                .navbar-collapse.collapse
-                    ul.nav.navbar-nav
-                        li.active
-                            a(href='#') Home
-                        li
-                            a(href='#about') About
-                        li
-                            a(href='#contact') Contact
-                        li.dropdown
-                            a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
-                                | Dropdown
-                                span.caret
-                            ul.dropdown-menu(role='menu')
-                                li
-                                    a(href='#') Action
-                                li
-                                    a(href='#') Another action
-                                li
-                                    a(href='#') Something else here
-                                li.divider
-                                li.dropdown-header Nav header
-                                li
-                                    a(href='#') Separated link
-                                li
-                                    a(href='#') One more separated link
-
-        nav.navbar.navbar-inverse
-            .container
-                .navbar-header
-                    button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='.navbar-collapse')
-                        span.sr-only Toggle navigation
-                        span.icon-bar
-                        span.icon-bar
-                        span.icon-bar
-                    a.navbar-brand(href='#') Project name
-                .navbar-collapse.collapse
-                    ul.nav.navbar-nav
-                        li.active
-                            a(href='#') Home
-                        li
-                            a(href='#about') About
-                        li
-                            a(href='#contact') Contact
-                        li.dropdown
-                            a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
-                                | Dropdown
-                                span.caret
-                            ul.dropdown-menu(role='menu')
-                                li
-                                    a(href='#') Action
-                                li
-                                    a(href='#') Another action
-                                li
-                                    a(href='#') Something else here
-                                li.divider
-                                li.dropdown-header Nav header
-                                li
-                                    a(href='#') Separated link
-                                li
-                                    a(href='#') One more separated link
-
-        .page-header
-            h1 Alerts
-        +alert-success("<strong>Well done!</strong> You successfully read this important alert message.")
-        +alert-info("<strong>Heads up!</strong> This alert needs your attention, but it's not super important.")
-        +alert-warning("<strong>Warning!</strong> Best check yo self, you're not looking too good.")
-        +alert-danger("<strong>Oh snap!</strong> Change a few things up and try submitting again.")
-        .page-header
-            h1 Progress bars
-        +progress-bar(60)
-        +progress-bar-info(20)
-        +progress-bar-warning(60)
-        +progress-bar-danger(80)
-        +progress-bar-striped(60)
-        .progress
-            .progress-bar.progress-bar-success(style='width: 35%')
-                span.sr-only 35% Complete (success)
-            .progress-bar.progress-bar-warning(style='width: 20%')
-                span.sr-only 20% Complete (warning)
-            .progress-bar.progress-bar-danger(style='width: 10%')
-                span.sr-only 10% Complete (danger)
-        .page-header
-            h1 List groups
-        .row
-            .col-sm-4
-                ul.list-group
-                    li.list-group-item Cras justo odio
-                    li.list-group-item Dapibus ac facilisis in
-                    li.list-group-item Morbi leo risus
-                    li.list-group-item Porta ac consectetur ac
-                    li.list-group-item Vestibulum at eros
-            // /.col-sm-4
-            .col-sm-4
-                .list-group
-                    a.list-group-item.active(href='#')
-                        | Cras justo odio
-                    a.list-group-item(href='#') Dapibus ac facilisis in
-                    a.list-group-item(href='#') Morbi leo risus
-                    a.list-group-item(href='#') Porta ac consectetur ac
-                    a.list-group-item(href='#') Vestibulum at eros
-            // /.col-sm-4
-            .col-sm-4
-                .list-group
-                    a.list-group-item.active(href='#')
-                        h4.list-group-item-heading List group item heading
-                        p.list-group-item-text
-                            | Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
-                    a.list-group-item(href='#')
-                        h4.list-group-item-heading List group item heading
-                        p.list-group-item-text
-                            | Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
-                    a.list-group-item(href='#')
-                        h4.list-group-item-heading List group item heading
-                        p.list-group-item-text
-                            | Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
-        // /.col-sm-4
-        .page-header
-            h1 Panels
-        .row
-            .col-sm-4
-                +panel-default("Panel title")
-                    | Panel content
-                +panel-primary("Panel title")
-                    | Panel content
-            .col-sm-4
-                +panel-success("Panel title")
-                    | Panel content
-                +panel-info("Panel title")
-                    | Panel content
-            .col-sm-4
-                +panel-warning("Panel title")
-                    | Panel content
-                +panel-danger("Panel title")
-                    | Panel content
-        .page-header
-            h1 Wells
-        .well
-            p
-                | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla sed consectetur.
-        .page-header
-            h1 Carousel
-        +carousel("example-generic",[{image: '../images/carousel/slide1.jpg'}, {image: '../images/carousel/slide2.jpg'}, {image: '../images/carousel/slide3.jpg',}])
+block content
+    div.page-header.splash
+        div.row
+            div.col-lg-12
+                h1.display-3 BCwallet
+                h5 BCwallet 是一个基于区块链技术的支付平台。
+                p.lead
+                    a(href='/login').btn.btn-secondary.btn-lg 开始使用
+    div.container
+        div.bs-docs-section
+            div.row
+                div.page-header.col-lg-12.text-center
+                    h2 BCwallet 是一个更加安全、高效的支付平台。
+            div.row.text-center
+                div.col-lg-4
+                    div.card.border-ligh.mb-3
+                        div.card-header 什么是区块链？
+                        h1.text-primary.h-img BlockChain
+                        div.card-body
+                            p 区块链起源于中本聪的比特币，作为比特币的底层技术，本质上是一个去中心化的数据库。是指通过去中心化和去信任的方式集体维护一个可靠数据库的技术方案。
+                            p 区块链技术被认为是互联网发明以来最具颠覆性的技术创新，它依靠密码学和数学巧妙的分布式算法，在无法建立信任关系的互联网上，无需借助任何第三方中心的介入就可以使参与者达成共识，以极低的成本解决了信任与价值的可靠传递难题。
+                div.col-lg-4
+                    div.card.border-ligh.mb-3
+                        div.card-header 区块链技术有哪些特征？
+                        h1.text-secondary.h-img Strength
+                        div.card-body
+                            p 中心化。区块链技术不依赖额外的第三方管理机构或硬件设施，没有中心管制，除了自成一体的区块链本身，通过分布式核算和存储，各个节点实现了信息自我验证、传递和管理。去中心化是区块链最突出最本质的特征。
+                            p 安全性。只要不能掌控全部数据节点的51%，就无法肆意操控修改网络数据，这使区块链本身变得相对安全，避免了主观人为的数据变更。
+                            p 匿名性。除非有法律规范要求，单从技术上来讲，各区块节点的身份信息不需要公开或验证，信息传递可以匿名进行。
+                div.col-lg-4
+                    div.card.border-ligh.mb-3
+                        div.card-header 为什么使用区块链钱包？
+                        h1.text-info.h-img Safety
+                        div.card-body
+                            p 第三方支付机构都和银行直接实现资金的结算，由于资金信息高度不透明，结算业务非常不利于监管，风险隐患较多,客户的财产安全受到威胁。
+                            p 区块链信息不可篡改性与去信任机制等特点非常适用于该场景，基于区块链的钱包系统能构建更加安全、高效的支付平台。第三方支付平台组成联盟链，使用区块链技术存储所有的交易数据，并让各大银行接入区块链网络，共同监督交易。

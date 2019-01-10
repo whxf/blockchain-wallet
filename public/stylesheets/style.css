@@ -1,8 +1,12 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+
+h2 {
+    padding-bottom: 30px;
 }
 
-a {
-  color: #00B7FF;
+.h-img {
+    padding-top: 60px;
+    padding-bottom: 30px;
+    font-size: 3em;
+    font-weight: bold;
 }
