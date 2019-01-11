@@ -1,0 +1,20 @@
+extends layout
+
+block content
+    div.container.pad-top
+        div.jumbotron
+            div.row
+                div.col-lg-3.col-md-2
+                div.col-lg-6.col-md-8
+                    h3.pad-bottom 登录账号
+                    form(method='POST' action='/register')
+                        div.form-group
+                            label 手机号
+                            input#inputPhone.form-control(type="number")
+                        div.form-group
+                            div.label 密码
+                            input#inputPassword.form-control(type="password")
+                        button.btn.btn-secondary(type='submit') 登录
+                        p
+                        a(href='/register')  注册新账户
+                div.col-lg-3.col-md-2

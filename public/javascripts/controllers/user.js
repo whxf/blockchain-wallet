@@ -1,6 +1,6 @@
 var exports = {
     login: function (req, res, next) {
-        res.render('index', {title: 'Login'});
+        res.render('login');
 
     },
 
@@ -9,7 +9,7 @@ var exports = {
     },
 
     register: function (req, res, next) {
-        res.render('index', {title: 'Register'});
+        res.render('register');
     },
 
     home: function (req, res, next) {
