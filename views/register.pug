@@ -1,13 +1,13 @@
 extends layout
 
 block content
-    div.container.pad-top
+    div.container.pad-top-lg.pad-bottom-lg
         div.jumbotron
             div.row
                 div.col-lg-3.col-md-2
                 div.col-lg-6.col-md-8
-                    h3.pad-bottom 注册账户
-                    form(method='POST' action='/register')
+                    h3.pad-bottom-sm 注册账户
+                    form(method='post')
                         div.form-group
                             label 昵称
                             input#inputNickname.form-control(type="text")

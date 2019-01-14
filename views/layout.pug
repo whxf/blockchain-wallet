@@ -6,27 +6,29 @@ html(lang="en")
         meta(name="viewport",content="width=device-width, initial-scale=1")
         meta(name="description",content="")
         meta(name="author",content="")
+
         title= title
+
+        link(rel="stylesheet",href="https://cdn.jsdelivr.net/npm/bootswatch@4.1.3/dist/minty/bootstrap.min.css")
+        link(rel="stylesheet",href="/stylesheets/custom.css")
+        link(rel="stylesheet",href="/stylesheets/style.css")
+
         block styles
-            link(rel="stylesheet",href="https://cdn.jsdelivr.net/npm/bootswatch@4.1.3/dist/minty/bootstrap.min.css")
-            link(rel="stylesheet",href="/stylesheets/custom.css")
-            link(rel="stylesheet",href="/stylesheets/style.css")
+
 
     body(data-spy="scroll",data-target=".scrollspy")
-        block header
-            div.navbar.navbar-expand-lg.fixed-top.navbar-dark.bg-primary
-                div.container
-                    div.navbar-brand BCwallet
+        div.navbar.navbar-expand-lg.fixed-top.navbar-dark.bg-primary
+            div.container
+                div.navbar-brand BCwallet
+
         block content
 
-        block footer
-            nav.card-footer
-                p.text-center © 2018-2019 Powered By 李熙 | 京ICP备18022911号
+        //nav.card-footer.fixed-bottom.bg-light
+        //    p.text-center © 2018-2019 Powered By 李熙 | 京ICP备18022911号
+
+        script(src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js")
+        script(src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js")
+        script(src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js")
 
         block scripts
-            script(src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js")
-            script(src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js")
-            script(src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js")
-
-
 
