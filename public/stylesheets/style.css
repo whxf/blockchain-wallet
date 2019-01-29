@@ -9,11 +9,15 @@ h2 {
     font-weight: bold;
 }
 
-.pad-top {
+.pad-top-lg {
     padding-top: 100px;
 }
 
-.pad-bottom {
+.pad-bottom-lg {
+    padding-bottom: 100px;
+}
+
+.pad-bottom-md {
     padding-bottom: 30px;
 }
 
@@ -22,3 +26,11 @@ h2 {
     font-size: 1.2em;
 }
 
+.option-card {
+    width: 100%;
+    height: 100px;
+    vertical-align: central;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2em;
+}

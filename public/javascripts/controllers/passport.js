@@ -9,7 +9,7 @@ var bcrypt = require('bcrypt-nodejs');
 var dbconfig = require('../config/db');
 var connection = mysql.createConnection(dbconfig.connection);
 
-console.log(connection)
+console.log(connection);
 
 connection.query('USE ' + dbconfig.database);
 
