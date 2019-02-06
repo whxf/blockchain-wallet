@@ -14,7 +14,11 @@ var exports = {
 
     home: function (req, res, next) {
         res.render('home', {title: 'home'});
-    }
+    },
+
+    transfer: function (req, res, next) {
+        res.render('transfer');
+    },
 };
 
 module.exports = exports;

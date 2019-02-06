@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    div.container.pad-top-lg.pad-bottom-lg
+        div.jumbotron
+            div.row
+                div.col-lg-3.col-md-2
+                div.col-lg-6.col-md-8
+                    h3.pad-bottom-sm 转账
+                    form
+                        div.form-group
+                            label 收款人
+                            input(name='receiver').form-control(type="text")
+                        div.form-group
+                            div.label 金额
+                            input(name='transfer_amount').form-control(type="text")
+                        button#button-confirm-transfer.btn.btn-secondary(type='button') 确认
+                div.col-lg-3.col-md-2
+
+block scripts
+    script(src='/javascripts/views/transfer.js')
