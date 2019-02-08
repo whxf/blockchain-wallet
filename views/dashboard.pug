@@ -12,19 +12,21 @@ block content
                 div.row
                     div.col-lg-6.col-md-6
                         div.card.text-white.bg-primary.mb-3
-                            div.card-body.option-card
+                            div#recharge-option.card-body.option-card
                                 p 充值
                     div.col-lg-6.col-md-6
                         div.card.text-white.bg-dark.mb-3
-                            div.card-body.option-card
+                            div#transfer-option.card-body.option-card
                                 p 转账
                 div.row
                     div.col-lg-6.col-md-6
                         div.card.text-white.bg-warning.mb-3
-                            div.card-body.option-card
-                                p 交易记录
+                            div#withdraw-option.card-body.option-card
+                                p 提现
                     div.col-lg-6.col-md-6
                         div.card.text-white.bg-info.mb-3
-                            div.card-body.option-card
-                                p 修改信息
+                            div#record-option.card-body.option-card
+                                p 交易记录
 
+block scripts
+    script(src='/javascripts/views/dashboard.js')

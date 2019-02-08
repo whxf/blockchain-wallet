@@ -18,8 +18,12 @@ block content
                         div.form-group
                             div.label 密码
                             input(name='password').form-control(type="password")
+                        div.form-group
+                            div.label   确认密码
+                            input(name='confirm-password').form-control(type="password")
                         button#button-register.btn.btn-secondary(type='button') 注册
                 div.col-lg-3.col-md-2
 
 block scripts
+    script(src='/javascripts/views/check_tools.js')
     script(src='/javascripts/views/register.js')

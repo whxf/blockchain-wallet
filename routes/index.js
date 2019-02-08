@@ -16,6 +16,8 @@ router.get('/register', index_controller.register);
 router.post('/register', user_controller.registerMethod);
 
 router.get('/transfer', index_controller.transfer);
-router.post('/transfer', transfer_controller.transfer);
+router.post('/transfer', transfer_controller.transferMethod);
+
+router.get('/dashboard', index_controller.dashboard);
 
 module.exports = router;

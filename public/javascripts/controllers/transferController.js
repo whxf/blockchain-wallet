@@ -1,30 +1,56 @@
 var format = require('string-format');
 var query = require('./databaseController');
-var addTransferRecord = require('../services/transferService').addRecord;
+var transferService = require('../services/transferService');
+var userService = require('../services/userService');
+
 
 var exports = {
-    transfer: function (req, res, next) {
+    transferMethod: function (req, res, next) {
         var receiver = req.body.receiver;
         var transfer_amount = req.body.transfer_amount;
 
-        var sender = '1';
+        if (!('user' in req.session.keys())) {
+            res.json({
+                status: 1,
+                message: '转账前请登录！',
+            });
+            return;
+        }
+
+        var sender = req.session.user.id;
         var type = '2';
 
-        console.log(receiver, transfer_amount);
-
-        var insertQuery = addRecord(sender, receiver, transfer_amount, type);
-
-        query(insertQuery, function (err, vals, fields) {
+        var sql = userService.getUserByPhone(receiver);
+        query(sql, function (err, vals, fields) {
             if (err) {
                 console.log(err);
                 res.json({
                     status: 1,
+                    message: err,
                 });
                 return;
             }
-            console.log('Inserted!');
-            res.json({
-                status: 0,
+            if (vals.length === 0) {
+                res.json({
+                    status: 1,
+                    message: '收账用户不存在，请检查',
+                });
+                return;
+            }
+            var insertQuery = transferService.addRecord(sender, receiver, transfer_amount, type);
+            query(insertQuery, function (err, vals, fields) {
+                if (err) {
+                    console.log(err);
+                    res.json({
+                        status: 1,
+                        message: err,
+                    });
+                    return;
+                }
+                res.json({
+                    status: 0,
+                    message: '转账成功',
+                });
             });
         });
     }

@@ -18,6 +18,10 @@ var exports = {
     transfer: function (req, res, next) {
         res.render('transfer');
     },
+
+    dashboard: function (req, res, next) {
+        res.render('dashboard');
+    },
 };
 
 module.exports = exports;

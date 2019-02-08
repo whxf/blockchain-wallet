@@ -14,10 +14,11 @@ block content
                         div.form-group
                             div.label 密码
                             input(name='password').form-control(type="password")
-                        button#button-sign-in.btn.btn-secondary(type='button') 登录
+                        button#button-login.btn.btn-secondary(type='button') 登录
                         p
                         a(href='/register')  注册新账户
                 div.col-lg-3.col-md-2
 
 block scripts
+    script(src='/javascripts/views/check_tools.js')
     script(src='/javascripts/views/login.js')

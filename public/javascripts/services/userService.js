@@ -12,7 +12,7 @@ exports = {
         var inserts = [nickname, phone, password];
         sql = mysql.format(sql, inserts);
         return sql;
-    }
+    },
 };
 
 module.exports = exports;

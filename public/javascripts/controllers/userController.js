@@ -1,7 +1,7 @@
 var bcrypt = require('bcrypt-nodejs');
 var query = require('./databaseController');
 var userService = require('../services/userService');
-var session = require('express-session');
+var secret = require('../constants/secret');
 
 var exports = {
     loginMethod: function (req, res, next) {
@@ -22,29 +22,33 @@ var exports = {
 
             // 成功获取数据库数据
 
+            if (vals.length === 0) {
+                res.json({
+                    status: 1,
+                    message: '不存在该用户，请注册！',
+                });
+                return;
+            }
+
             var user = vals[0]; // 用户数据
-            var pwd = user.password;
-            var salt = bcrypt.genSaltSync(10);
-            var hash_pwd = bcrypt.hashSync(pwd, salt);
+            console.log(user);
 
             // 与数据库中密码数据进行比对
-            if (bcrypt.compareSync(input_password, hash_pwd)) {
+            if (bcrypt.compareSync(input_password, user.password)) {
                 req.session.user = {
                     'id': user.id,
                     'nickname': user.nickname,
                     'phone': user.phone,
                 };
 
-                console.log('Success login!');
                 res.json({
                     status: 0,
-                    message: 'Success login!',
+                    message: '登录成功！',
                 });
-            } else { // 密码输入错误
-                console.log('Password error!');
+            } else {
                 res.json({
                     status: 1,
-                    message: 'Password error!',
+                    message: '密码错误，请重新输入密码！',
                 });
             }
         });
@@ -54,8 +58,9 @@ var exports = {
         var input_nickname = req.body.nickname;
         var input_phone = req.body.phone;
         var input_password = req.body.password;
+        input_password = bcrypt.hashSync(input_password, secret.hash_bcrypt);
 
-        var sql = userService.addUser(input_nickname, input_phone, input_password);
+        var sql = userService.getUserByPhone(input_phone);
         query(sql, function (err, vals, fields) {
             // mysql query 出现错误
             if (err) {
@@ -67,14 +72,35 @@ var exports = {
                 return;
             }
 
-            // 成功获取数据库数据
+            if (vals.length > 0) {
+                res.json({
+                    status: 1,
+                    message: '该手机号已经被注册，请登录!',
+                });
+                return;
+            }
 
-            console.log('Success register!');
-            res.json({
-                status: 0,
-                message: 'Success register!',
+            var sql2 = userService.addUser(input_nickname, input_phone, input_password);
+            query(sql2, function (err, vals, fields) {
+                // mysql insert 出现错误
+                if (err) {
+                    console.log(err);
+                    res.json({
+                        status: 1,
+                        message: err,
+                    });
+                } else {
+                    res.json({
+                        status: 0,
+                        message: '注册成功！',
+                    });
+                }
+
             });
+
         });
+
+
     }
 };
 
