@@ -5,19 +5,19 @@ $.ajaxSetup({
 });
 
 $(function () {
-    $('#button-login').click(function () {
+    $('#button-register').click(function () {
+        var nickname = $("input[name='nickname']").val();
         var phone = $("input[name='phone']").val();
         var password = $("input[name='password']").val();
 
         $.ajax({
             method: "post",
-            url: "/login",
-            data: {phone: phone, password: password},
+            url: "/register",
+            data: {nickname: nickname, phone: phone, password: password},
             success: function (res) {
-                if(res.status === 0){
-                    window.location.assign('/dashboard');
-                }
-                else if(res.status === 1){
+                if (res.status === 0) {
+                    window.location.assign('/login');
+                } else if (res.status === 1) {
                     window.location.assign('/home');
                 }
             }

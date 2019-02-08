@@ -1,7 +1,6 @@
 var exports = {
     login: function (req, res, next) {
         res.render('login');
-
     },
 
     logout: function (req, res, next) {

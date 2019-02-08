@@ -7,16 +7,19 @@ block content
                 div.col-lg-3.col-md-2
                 div.col-lg-6.col-md-8
                     h3.pad-bottom-sm 注册账户
-                    form(method='post')
+                    form
                         div.form-group
                             label 昵称
-                            input#inputNickname.form-control(type="text")
+                            input(name='nickname').form-control(type="text")
                         div.form-group
                             label 手机号
-                            input#inputPhone.form-control(type="number")
+                            input(name='phone').form-control(type="number")
                             small.form-text.text-info 手机号仅为认证所用，不会用作其他用途。
                         div.form-group
                             div.label 密码
-                            input#inputPassword.form-control(type="password")
-                        button.btn.btn-secondary(type='submit') 注册
+                            input(name='password').form-control(type="password")
+                        button#button-register.btn.btn-secondary(type='button') 注册
                 div.col-lg-3.col-md-2
+
+block scripts
+    script(src='/javascripts/views/register.js')

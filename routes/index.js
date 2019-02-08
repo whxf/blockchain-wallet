@@ -1,17 +1,21 @@
 var express = require('express');
 var router = express.Router();
 
-var user_controller = require('../public/javascripts/controllers/user');
-var login_controller = require('../public/javascripts/controllers/loginController');
+var index_controller = require('../public/javascripts/controllers/indexController');
+var user_controller = require('../public/javascripts/controllers/userController');
 var transfer_controller = require('../public/javascripts/controllers/transferController');
 
+router.get('/', index_controller.home);
 
-router.get('/login', user_controller.login);
-router.post('/login', login_controller.compare_password);
+router.get('/login', index_controller.login);
+router.post('/login', user_controller.loginMethod);
 
-router.get('/logout', user_controller.logout);
-router.get('/register', user_controller.register);
-router.get('/transfer', user_controller.transfer);
-router.get('/', user_controller.home);
+router.get('/logout', index_controller.logout);
+
+router.get('/register', index_controller.register);
+router.post('/register', user_controller.registerMethod);
+
+router.get('/transfer', index_controller.transfer);
 router.post('/transfer', transfer_controller.transfer);
+
 module.exports = router;

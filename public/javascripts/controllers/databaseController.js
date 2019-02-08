@@ -1,5 +1,5 @@
 var mysql = require('mysql');
-var dbconfig = require('../config/db');
+var dbconfig = require('../constants/db');
 var pool = mysql.createPool(dbconfig.connection);
 
 var query = function (sql, callback) {
