@@ -12,7 +12,6 @@ var exports = {
         query(sql, function (err, vals, fields) {
             // mysql query 出现错误
             if (err) {
-                console.log(err);
                 res.json({
                     status: 1,
                     message: err,
@@ -31,7 +30,6 @@ var exports = {
             }
 
             var user = vals[0]; // 用户数据
-            console.log(user);
 
             // 与数据库中密码数据进行比对
             if (bcrypt.compareSync(input_password, user.password)) {
@@ -84,7 +82,6 @@ var exports = {
             query(sql2, function (err, vals, fields) {
                 // mysql insert 出现错误
                 if (err) {
-                    console.log(err);
                     res.json({
                         status: 1,
                         message: err,

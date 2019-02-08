@@ -9,7 +9,7 @@ var exports = {
         var receiver = req.body.receiver;
         var transfer_amount = req.body.transfer_amount;
 
-        if (!('user' in req.session.keys())) {
+        if (req.session['user'] === undefined) {
             res.json({
                 status: 1,
                 message: '转账前请登录！',

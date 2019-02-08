@@ -17,7 +17,7 @@ $(function () {
             alert('请输入转账金额');
             return;
         }
-        if (checkmoney() === false) {
+        if (checkmoney(transfer_amount) === false) {
             alert('请输入合法金额');
             transfer_amount = '';
             return;

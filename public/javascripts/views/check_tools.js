@@ -4,6 +4,6 @@ function is_null(val) {
 }
 
 function checkmoney(money) {
-    var pattern = /^\d+(\.\d{1,2})?$/;
+    var pattern =  /(^[-+]?[1-9]\d*(\.\d{1,2})?$)|(^[-+]?[0]{1}(\.\d{1,2})?$)/;;
     return pattern.test(money);
 }
