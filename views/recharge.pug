@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    div.container.pad-top-lg.pad-bottom-lg
+        div.jumbotron
+            div.row
+                div.col-lg-12.text-center
+                    img(src='/images/alipay.png', style='width:150px; height:150px;')
+            div.row
+                div.col-lg-3.col-md-2
+                div.col-lg-6.col-md-8
+                    h3.pad-bottom-sm 充值
+                    form
+                        div.form-group
+                            div.label 金额
+                            input(name='recharge_amount').form-control(type="text")
+                        button#button-confirm-recharge.btn.btn-secondary(type='button') 确认
+                div.col-lg-3.col-md-2
+
+block scripts
+    script(src='/javascripts/views/check_tools.js')
+    script(src='/javascripts/views/transfer.js')

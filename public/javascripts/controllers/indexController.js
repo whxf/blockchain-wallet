@@ -3,16 +3,12 @@ var exports = {
         res.render('login');
     },
 
-    logout: function (req, res, next) {
-        res.render('index', {title: 'Logout'});
-    },
-
     register: function (req, res, next) {
         res.render('register');
     },
 
     home: function (req, res, next) {
-        res.render('home', {title: 'home'});
+        res.render('home');
     },
 
     transfer: function (req, res, next) {
@@ -21,6 +17,18 @@ var exports = {
 
     dashboard: function (req, res, next) {
         res.render('dashboard');
+    },
+
+    checkRecord: function (req, res, next) {
+        res.render('check-record');
+    },
+
+    recharge: function (req, res, next) {
+        res.render('recharge');
+    },
+
+    withdraw: function (req, res, next) {
+        res.render('withdraw');
     },
 };
 

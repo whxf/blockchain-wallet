@@ -1,6 +1,7 @@
 var bcrypt = require('bcrypt-nodejs');
 var query = require('./databaseController');
 var userService = require('../services/userService');
+var transferService = require('../services/transferService');
 var secret = require('../constants/secret');
 
 var exports = {

@@ -6,7 +6,7 @@ $.ajaxSetup({
 
 $(function () {
     $('#recharge-option').click(function () {
-        alert('功能待开发！');
+        window.location.assign('/recharge');
     });
 
     $('#transfer-option').click(function () {
@@ -14,7 +14,7 @@ $(function () {
     });
 
     $('#withdraw-option').click(function () {
-        alert('功能待开发！');
+        window.location.assign('/withdraw');
     });
 
     $('#record-option').click(function () {
