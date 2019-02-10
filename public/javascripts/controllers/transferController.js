@@ -218,13 +218,13 @@ var exports = {
 
         var user_id = req.session.user.id;
         var start = req.body.start;
+        console.log(req.body);
         var pagesize = config.pagesize;
 
-        var getQuery = transferService.getRecord(user_id, start, pagesize);
+        var getQuery = transferService.getRecord(user_id, 0, pagesize);
 
         query(getQuery, function (err, vals, fields) {
             if (err) {
-                console.log(err);
                 res.json({
                     status: 1,
                     message: err,
@@ -233,7 +233,6 @@ var exports = {
             }
             var ret_data = JSON.stringify(vals);
             ret_data = JSON.parse(ret_data);
-            console.log(ret_data);
 
             res.json({
                 status: 0,

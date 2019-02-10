@@ -27,4 +27,6 @@ router.get('/withdraw', index_controller.withdraw);
 router.post('/withdraw', transfer_controller.withdrawMethod);
 
 
+router.post('/getRecord', transfer_controller.getRecordMethod);
+
 module.exports = router;
