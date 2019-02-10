@@ -18,6 +18,6 @@ $(function () {
     });
 
     $('#record-option').click(function () {
-        alert('功能待开发！');
+        window.location.assign('/checkRecord');
     });
 });

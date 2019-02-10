@@ -7,26 +7,27 @@ block content
                 img(src='/images/avatar.svg', style='width:200px; height:200px').pad-bottom-md
                 p 第一个用户
             div.col-lg-8.col-md-8
-        div.row.pad-bottom-md.jumbotron
-            div.col-lg-12
-                div.row
-                    div.col-lg-6.col-md-6
-                        div.card.text-white.bg-primary.mb-3
-                            div#recharge-option.card-body.option-card
-                                p 充值
-                    div.col-lg-6.col-md-6
-                        div.card.text-white.bg-dark.mb-3
-                            div#transfer-option.card-body.option-card
-                                p 转账
-                div.row
-                    div.col-lg-6.col-md-6
-                        div.card.text-white.bg-warning.mb-3
-                            div#withdraw-option.card-body.option-card
-                                p 提现
-                    div.col-lg-6.col-md-6
-                        div.card.text-white.bg-info.mb-3
-                            div#record-option.card-body.option-card
-                                p 交易记录
+                div.col-lg-12.jumbotron
+                    div.row
+                        h4.pad-bottom-sm 账户余额： 520.00 元
+                    div.row
+                        div.col-lg-6.col-md-6
+                            div.card.text-white.bg-primary.mb-3
+                                div#recharge-option.card-body.option-card
+                                    p 充值
+                        div.col-lg-6.col-md-6
+                            div.card.text-white.bg-dark.mb-3
+                                div#transfer-option.card-body.option-card
+                                    p 转账
+                    div.row
+                        div.col-lg-6.col-md-6
+                            div.card.text-white.bg-warning.mb-3
+                                div#withdraw-option.card-body.option-card
+                                    p 提现
+                        div.col-lg-6.col-md-6
+                            div.card.text-white.bg-info.mb-3
+                                div#record-option.card-body.option-card
+                                    p 交易记录
 
 block scripts
     script(src='/javascripts/views/dashboard.js')

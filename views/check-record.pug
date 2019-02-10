@@ -2,61 +2,65 @@ extends layout
 
 block content
     div.container.pad-top-lg.pad-bottom-lg
-        table.table-hover
-            thead
-                tr
-                    th.col Type
-                    th.col Column heading
-                    th.col Column heading
-                    th.col Column heading
-            tbody
-                tr.table-active
-                    th.row Active
-                    td Column content
-                    td Column content
-                    td Column content
-                tr
-                    th.row Default
-                    td Column content
-                    td Column content
-                    td Column content
-                tr.table-primary
-                    th.row Primary
-                    td Column content
-                    td Column content
-                    td Column content
-                tr.table-secondary
-                    th.row Secondary
-                    td Column content
-                    td Column content
-                    td Column content
-                tr.table-success
-                    th.row Success
-                    td Column content
-                    td Column content
-                    td Column content
-                tr.table-danger
-                    th.row Danger
-                    td Column content
-                    td Column content
-                    td Column content
-                tr.table-warning
-                    th.row Warning
-                    td Column content
-                    td Column content
-                    td Column content
-                tr.table-info
-                    th.row Info
-                    td Column content
-                    td Column content
-                    td Column content
-                tr.table-light
-                    th.row Light
-                    td Column content
-                    td Column content
-                    td Column content
-                tr.table-dark
-                    th.row Dark
-                    td Column content
-                    td Column content
-                    td Column content
+        div.jumbotron
+            div.row
+                h3.pad-bottom-sm 交易记录
+            div.row
+                table.table.table-hover
+                    thead
+                        tr.table-active
+                            th(scope='col') 类别
+                            th(scope='col') 交易明细
+                            th(scope='col') 金额
+                            th(scope='col') 时间
+                    tbody
+                        tr.table-primary
+                            th 充值
+                            td 支付宝充值
+                            td +100
+                            td 2019-02-05 19:42:16
+                        tr.table-secondary
+                            th 提现
+                            td 支付宝提现
+                            td -20
+                            td 2019-02-05 19:42:16
+                        tr.table-light
+                            th 转出
+                            td 转账给133***333
+                            td -5
+                            td 2019-02-05 19:42:16
+                        tr.table-primary
+                            th 充值
+                            td 支付宝充值
+                            td +100
+                            td 2019-02-05 19:42:16
+                        tr.table-primary
+                            th 充值
+                            td 支付宝充值
+                            td +100
+                            td 2019-02-05 19:42:16
+                        tr.table-light
+                            th 转入
+                            td 133***333给我转账
+                            td +2
+                            td 2019-02-05 19:42:16
+                        tr.table-light
+                            th 转出
+                            td 转账给133***333
+                            td -5
+                            td 2019-02-05 19:42:16
+                        tr.table-light
+                            th 转入
+                            td 133***333给我转账
+                            td +2
+                            td 2019-02-05 19:42:16
+                        tr.table-lightth
+                            th 转出
+                            td 转账给133***333
+                            td -5
+                            td 2019-02-05 19:42:16
+                        tr.table-secondary
+                            th 提现
+                            td 支付宝提现
+                            td -20
+                            td 2019-02-05 19:42:16
