@@ -1,5 +1,5 @@
 var format = require('string-format');
-var query = require('./databaseController');
+var query = require('./dataController');
 var transferService = require('../services/transferService');
 var userService = require('../services/userService');
 
@@ -204,6 +204,10 @@ var exports = {
                 });
             });
         });
+    },
+
+    getRecordMethod:function (req, res, next) {
+
     }
 };
 

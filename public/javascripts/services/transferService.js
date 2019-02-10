@@ -6,8 +6,6 @@ exports = {
         var inserts = [sender, receiver, transfer_amount, type];
         sql = mysql.format(sql, inserts);
         return sql;
-        // TODO: Preparing Queries(https://www.npmjs.com/package/mysql#preparing-queries)
-        // https://loopback.io
     },
 
     getBalance: function (user_id) {
@@ -20,6 +18,16 @@ exports = {
     setBalance: function (user_id, balance) {
         var sql = "update users set balance = ? where id = ? ";
         var inserts = [balance, user_id];
+        sql = mysql.format(sql, inserts);
+        return sql;
+    },
+
+    getRecord: function (user_id, start, pagesize) {
+        var sql = "select * from records " +
+            "where sender = ? or receiver = ? " +
+            "order by transfer_time desc " +
+            "limit ? offset ? ";
+        var inserts = [user_id, user_id, start, pagesize];
         sql = mysql.format(sql, inserts);
         return sql;
     }

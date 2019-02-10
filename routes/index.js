@@ -18,12 +18,13 @@ router.post('/transfer', transfer_controller.transferMethod);
 
 router.get('/dashboard', index_controller.dashboard);
 
-router.get('/checkRecord', index_controller.checkRecord);
+router.get('/record', index_controller.record);
 
 router.get('/recharge', index_controller.recharge);
 router.post('/recharge', transfer_controller.rechargeMethod);
 
 router.get('/withdraw', index_controller.withdraw);
 router.post('/withdraw', transfer_controller.withdrawMethod);
+
 
 module.exports = router;

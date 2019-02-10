@@ -19,8 +19,8 @@ var exports = {
         res.render('dashboard');
     },
 
-    checkRecord: function (req, res, next) {
-        res.render('check-record');
+    record: function (req, res, next) {
+        res.render('record');
     },
 
     recharge: function (req, res, next) {

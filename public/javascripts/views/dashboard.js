@@ -18,6 +18,6 @@ $(function () {
     });
 
     $('#record-option').click(function () {
-        window.location.assign('/checkRecord');
+        window.location.assign('/record');
     });
 });
