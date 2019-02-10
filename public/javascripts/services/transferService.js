@@ -26,7 +26,7 @@ exports = {
         var sql = "select * from records " +
             "where sender = ? or receiver = ? " +
             "order by transfer_time desc " +
-            "limit ? offset ? ";
+            "limit ? , ? ";
         var inserts = [user_id, user_id, start, pagesize];
         sql = mysql.format(sql, inserts);
         return sql;
