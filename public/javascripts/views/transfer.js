@@ -31,7 +31,7 @@ $(function () {
             data: {receiver: receiver, transfer_amount: transfer_amount},
             success: function (res) {
                 if (res.status === 0) {
-                    window.location.assign('/');
+                    window.location.assign('/dashboard');
                 } else {
                     alert(res.message);
                     receiver = '';
@@ -62,7 +62,7 @@ $(function () {
             data: {recharge_amount: recharge_amount},
             success: function (res) {
                 if (res.status === 0) {
-                    window.location.assign('/');
+                    window.location.assign('/dashboard');
                 } else {
                     alert(res.message);
                     recharge_amount = '';
@@ -92,7 +92,7 @@ $(function () {
             data: {withdraw_amount: withdraw_amount},
             success: function (res) {
                 if (res.status === 0) {
-                    window.location.assign('/');
+                    window.location.assign('/dashboard');
                 } else {
                     alert(res.message);
                     withdraw_amount = '';

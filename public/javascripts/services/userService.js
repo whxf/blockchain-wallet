@@ -13,6 +13,12 @@ exports = {
         sql = mysql.format(sql, inserts);
         return sql;
     },
+    getUserById:function (id){
+        var sql = "select * from  users where id = ? ";
+        var inserts = [id];
+        sql = mysql.format(sql, inserts);
+        return sql;
+    },
 };
 
 module.exports = exports;

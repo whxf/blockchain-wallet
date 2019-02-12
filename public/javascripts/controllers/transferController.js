@@ -8,7 +8,7 @@ var config = require('../constants/conf');
 var exports = {
     transferMethod: function (req, res, next) {
         var receiver = req.body.receiver;
-        var transfer_amount = req.body.transfer_amount;
+        var transfer_amount = parseFloat(req.body.transfer_amount);
 
         if (req.session['user'] === undefined) {
             res.json({
@@ -18,8 +18,8 @@ var exports = {
             return;
         }
 
-        var sender = req.session.user.id;
-        var type = '2';
+        var sender = req.session.user.phone;
+        var transfer_type = '2';
 
         if (sender === receiver) {
             res.json({
@@ -29,48 +29,56 @@ var exports = {
             return;
         }
 
-        var sql = userService.getUserByPhone(receiver);
-        query(sql, function (err, vals, fields) {
+        var sender_balance;
+        var receiver_balance;
+
+        var querySenderBalance = transferService.getBalance(sender);
+        query(querySenderBalance, function (err, vals, fields) {
+            var balance = parseFloat(vals[0].balance);
             if (err) {
-                console.log(err);
                 res.json({
                     status: 1,
                     message: err,
                 });
                 return;
             }
-            if (vals.length === 0) {
+            if (balance < transfer_amount) {
                 res.json({
                     status: 1,
-                    message: '收账用户不存在，请检查',
+                    message: '账户余额不足，请充值',
                 });
                 return;
             }
+            sender_balance = balance - transfer_amount;
 
-            receiver = vals[0].id;
+            var queryReceiverBalance = transferService.getBalance(receiver);
+            query(queryReceiverBalance, function (err, vals, fields) {
 
-            var queryBalance = transferService.getBalance(req.session.user.id);
-            query(queryBalance, function (err, vals, fields) {
+                var balance = parseFloat(vals[0].balance);
 
-                console.log(vals[0].balance);
                 if (err) {
-                    console.log(err);
                     res.json({
                         status: 1,
                         message: err,
                     });
                     return;
                 }
-                if (vals[0].balance < transfer_amount) {
-                    res.json({
-                        status: 1,
-                        message: '账户余额不足，请充值',
-                    });
-                } else {
-                    var insertQuery = transferService.addRecord(sender, receiver, transfer_amount, type);
-                    query(insertQuery, function (err, vals, fields) {
+                receiver_balance = balance + transfer_amount;
+
+
+                var setSenderBalance = transferService.setBalance(sender, sender_balance);
+                var setReceiverBalance = transferService.setBalance(receiver, receiver_balance);
+
+                query(setSenderBalance, function (err, vals, fields) {
+                    if (err) {
+                        res.json({
+                            status: 1,
+                            message: err,
+                        });
+                        return;
+                    }
+                    query(setReceiverBalance, function (err, vals, fields) {
                         if (err) {
-                            console.log(err);
                             res.json({
                                 status: 1,
                                 message: err,
@@ -78,16 +86,29 @@ var exports = {
                             return;
                         }
 
-                        // TODO : 修改balance字段
+                        var inset_transfer = transferService.addRecord(sender, receiver, transfer_amount, transfer_type);
 
-                        res.json({
-                            status: 0,
-                            message: '转账成功',
+                        query(inset_transfer, function (err, vals, fields) {
+                            if (err) {
+                                res.json({
+                                    status: 1,
+                                    message: err,
+                                });
+                                return;
+                            }
+                            res.json({
+                                status: 0,
+                                message: '转账成功',
+                            });
                         });
                     });
-                }
+                });
+
             });
+
         });
+
+
     },
     rechargeMethod: function (req, res, next) {
         var recharge_amount = parseFloat(req.body.recharge_amount);
@@ -101,10 +122,11 @@ var exports = {
 
         var sender = 'alipay';
         var type = '1';
-        var receiver = req.session.user.id;
+        var receiver = req.session.user.phone;
 
         var getQuery = transferService.getBalance(receiver);
         query(getQuery, function (err, vals, fields) {
+            console.log(vals);
             if (err) {
                 console.log(err);
                 res.json({
@@ -154,12 +176,13 @@ var exports = {
             return;
         }
 
-        var sender = req.session.user.id;
+        var sender = req.session.user.phone;
         var type = '3';
         var receiver = 'alipay';
 
         var getQuery = transferService.getBalance(sender);
         query(getQuery, function (err, vals, fields) {
+            console.log(vals);
             if (err) {
                 res.json({
                     status: 1,
@@ -216,12 +239,11 @@ var exports = {
             return;
         }
 
-        var user_id = req.session.user.id;
+        var user_phone = req.session.user.phone;
         var start = req.body.start;
-        console.log(req.body);
         var pagesize = config.pagesize;
 
-        var getQuery = transferService.getRecord(user_id, 0, pagesize);
+        var getQuery = transferService.getRecord(user_phone, 0, pagesize);
 
         query(getQuery, function (err, vals, fields) {
             if (err) {
@@ -240,8 +262,6 @@ var exports = {
                 data: ret_data,
             });
         });
-
-
     }
 };
 

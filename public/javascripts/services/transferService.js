@@ -8,16 +8,16 @@ exports = {
         return sql;
     },
 
-    getBalance: function (user_id) {
-        var sql = "select balance from users where id = ? ";
-        var inserts = [user_id];
+    getBalance: function (phone) {
+        var sql = "select balance from users where phone = ? ";
+        var inserts = [phone];
         sql = mysql.format(sql, inserts);
         return sql;
     },
 
-    setBalance: function (user_id, balance) {
-        var sql = "update users set balance = ? where id = ? ";
-        var inserts = [balance, user_id];
+    setBalance: function (phone, balance) {
+        var sql = "update users set balance = ? where phone = ? ";
+        var inserts = [balance, phone];
         sql = mysql.format(sql, inserts);
         return sql;
     },
