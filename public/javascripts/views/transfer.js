@@ -31,11 +31,15 @@ $(function () {
             data: {receiver: receiver, transfer_amount: transfer_amount},
             success: function (res) {
                 if (res.status === 0) {
+                    alert('转账成功！');
                     window.location.assign('/dashboard');
                 } else {
                     alert(res.message);
                     receiver = '';
                     transfer_amount = '';
+                    if (res.message === '请先登录') {
+                        window.location.assign('/login');
+                    }
                 }
             }
         });
@@ -62,10 +66,14 @@ $(function () {
             data: {recharge_amount: recharge_amount},
             success: function (res) {
                 if (res.status === 0) {
+                    alert('充值成功！');
                     window.location.assign('/dashboard');
                 } else {
                     alert(res.message);
                     recharge_amount = '';
+                    if (res.message === '请先登录') {
+                        window.location.assign('/login');
+                    }
                 }
             }
         });
@@ -92,10 +100,14 @@ $(function () {
             data: {withdraw_amount: withdraw_amount},
             success: function (res) {
                 if (res.status === 0) {
+                    alert('提现成功！');
                     window.location.assign('/dashboard');
                 } else {
                     alert(res.message);
                     withdraw_amount = '';
+                    if (res.message === '请先登录') {
+                        window.location.assign('/login');
+                    }
                 }
             }
         });

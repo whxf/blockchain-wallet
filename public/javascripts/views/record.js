@@ -86,6 +86,9 @@ $(function () {
                 if (res.status === 0) {
                     if (user_phone === '0') {
                         alert('请先登录');
+                        if (res.message === '请先登录') {
+                            window.location.assign('/login');
+                        }
                         return;
                     }
                     var tbody = document.getElementById('table-body');

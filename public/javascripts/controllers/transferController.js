@@ -115,7 +115,7 @@ var exports = {
         if (req.session['user'] === undefined) {
             res.json({
                 status: 1,
-                message: '充值前请登录！',
+                message: '请先登录',
             });
             return;
         }
@@ -171,7 +171,7 @@ var exports = {
         if (req.session['user'] === undefined) {
             res.json({
                 status: 1,
-                message: '提现前请登录！',
+                message: '请先登录',
             });
             return;
         }
@@ -234,7 +234,7 @@ var exports = {
         if (req.session['user'] === undefined) {
             res.json({
                 status: 1,
-                message: '查询前请登录！',
+                message: '请先登录',
             });
             return;
         }

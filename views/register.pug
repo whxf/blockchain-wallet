@@ -16,6 +16,11 @@ block content
                             input(name='phone').form-control(type="number")
                             small.form-text.text-info 手机号仅为认证所用，不会用作其他用途。
                         div.form-group
+                            label 验证码
+                            input(name='code').form-control(type="number")
+                            |
+                            a#send-message(href='#')  发送验证码
+                        div.form-group
                             div.label 密码
                             input(name='password').form-control(type="password")
                         div.form-group
