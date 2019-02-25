@@ -26,4 +26,6 @@ router.post('/recharge', transfer_controller.rechargeMethod);
 router.get('/withdraw', index_controller.withdraw);
 router.post('/withdraw', transfer_controller.withdrawMethod);
 
+router.get('/information', index_controller.information);
+
 module.exports = router;

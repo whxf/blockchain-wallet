@@ -30,6 +30,11 @@ var exports = {
     withdraw: function (req, res, next) {
         res.render('withdraw');
     },
+
+    information: function(req, res, next) {
+        res.render('information');
+    },
+
 };
 
 module.exports = exports;

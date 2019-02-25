@@ -1,0 +1,42 @@
+extends layout
+
+block content
+    div.container.pad-top-lg.pad-bottom-lg
+        div.jumbotron
+            div.row
+                div.col-lg-3.col-md-2
+                div.col-lg-6.col-md-8
+                    h3.pad-bottom-sm 修改信息
+                    div.row
+                        div.col-lg-12.text-center
+                            img(src='/images/avatar.svg', style='width:150px; height:150px;')
+                    form
+                        div.form-group
+                            label 昵称
+                            div#nickname-input-box
+
+                        button#button-confirm-change-nickname.btn.btn-secondary(type='button') 确认修改昵称
+                    form
+                        div.form-group
+                            label 手机号
+                            div#phone-input-box
+
+                            small.form-text.text-info 手机号仅为认证所用，不会用作其他用途。
+                    form
+                        div.form-group
+                            div.label 密码
+                            input(name='password').form-control(type="password")
+                        div.form-group
+                            div.label   确认密码
+                            input(name='confirm-password').form-control(type="password")
+                        div.form-group
+                            label 验证码
+                            input(name='code').form-control(type="number")
+                            |
+                            a#send-message(href='#')  发送验证码
+                        button#button-confirm-change-password.btn.btn-secondary(type='button') 确认修改密码
+                div.col-lg-3.col-md-2
+
+block scripts
+    script(src='/javascripts/views/check_tools.js')
+    script(src='/javascripts/views/information.js')

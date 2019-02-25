@@ -8,7 +8,7 @@ block content
                 h5 BCwallet 是一个基于区块链技术的支付平台。
                     p
                     p.lead
-                        a(href='/login').btn.btn-secondary.btn-lg 开始使用
+                        button#start.btn.btn-secondary.btn-lg 开始使用
     div.container.pad-bottom-lg
         div.bs-docs-section
             div.row
@@ -37,3 +37,6 @@ block content
                         div.card-body
                             p 第三方支付机构结算业务非常不利于监管，风险隐患较多。
                             p 区块链信息不可篡改性与去信任机制等特点非常适用于该场景，基于区块链的钱包系统能构建更加安全、高效的支付平台。
+
+block scripts
+    script(src='/javascripts/views/home.js')

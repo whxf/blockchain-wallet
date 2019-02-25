@@ -63,7 +63,6 @@ var exports = {
         query(sql, function (err, vals, fields) {
             // mysql query 出现错误
             if (err) {
-                console.log(err);
                 res.json({
                     status: 1,
                     message: err,
@@ -95,7 +94,63 @@ var exports = {
                 }
             });
         });
-    }
+    },
+    changeNicknameMethod: function (req, res, next) {
+        if (req.session['user'] === undefined) {
+            res.json({
+                status: 1,
+                message: '请先登录',
+            });
+            return;
+        }
+        var phone = req.session.user.phone;
+        var new_nickname = req.body.nickname;
+
+        var sql = userService.setUserNickname(phone, new_nickname);
+
+        query(sql, function (err, vals, fields) {
+            if (err) {
+                res.json({
+                    status: 1,
+                    message: err,
+                });
+            } else {
+                req.session.user.nickname = new_nickname;
+                res.json({
+                    status: 0,
+                    message: '修改成功！',
+                });
+            }
+        });
+    },
+    changePasswordMethod: function (req, res, next) {
+        if (req.session['user'] === undefined) {
+            res.json({
+                status: 1,
+                message: '请先登录',
+            });
+            return;
+        }
+        var phone = req.session.user.phone;
+        var input_password = req.body.password;
+        input_password = bcrypt.hashSync(input_password, secret.hash_bcrypt);
+
+        var sql = userService.setUserPassword(phone, input_password);
+
+        query(sql, function (err, vals, fields) {
+            if (err) {
+                res.json({
+                    status: 1,
+                    message: err,
+                });
+            } else {
+                res.json({
+                    status: 0,
+                    message: '修改密码成功！',
+                });
+            }
+        });
+    },
 };
 
 

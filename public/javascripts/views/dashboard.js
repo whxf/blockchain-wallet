@@ -37,6 +37,10 @@ $(function () {
         });
     });
 
+    $('#change-infomation-option').click(function () {
+        window.location.assign('/information');
+    });
+
     $('#recharge-option').click(function () {
         window.location.assign('/recharge');
     });

@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
+var user_controller = require('../public/javascripts/controllers/userController');
 var transfer_controller = require('../public/javascripts/controllers/transferController');
 var transferService = require('../public/javascripts/services/transferService');
 var query = require('../public/javascripts/controllers/dataController');
@@ -46,6 +47,7 @@ router.post('/getUserInfo', function (req, res, next) {
                 status: 1,
                 nickname: nickname,
                 balance: balance,
+                phone: req.session.user.phone,
             });
             return;
         }
@@ -56,6 +58,7 @@ router.post('/getUserInfo', function (req, res, next) {
             status: 0,
             nickname: nickname,
             balance: balance,
+            phone: req.session.user.phone,
         });
     });
 });
@@ -107,6 +110,22 @@ router.post('/getVerificationCode', function (req, res, next) {
         data: req.session.code
     });
 
+});
+
+router.post('/changeNickname', user_controller.changeNicknameMethod);
+
+router.post('/changePassword', user_controller.changePasswordMethod);
+
+router.post('/checkLogin', function (req, res, next) {
+    if (req.session['user'] === undefined) {
+        res.json({
+            status: 1,
+        });
+        return
+    }
+    res.json({
+        status: 0,
+    });
 });
 
 module.exports = router;
