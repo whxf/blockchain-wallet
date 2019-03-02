@@ -4,9 +4,11 @@ var transferService = require('../services/transferService');
 var userService = require('../services/userService');
 var config = require('../constants/conf');
 
+var createRecord = require('./blockchainController').createRecord;
+var queryRecord = require('./blockchainController').queryRecord;
 
 var exports = {
-    transferMethod: function (req, res, next) {
+    transferMethod: async function (req, res, next) {
         var receiver = req.body.receiver;
         var transfer_amount = parseFloat(req.body.transfer_amount);
 
@@ -77,7 +79,7 @@ var exports = {
                         });
                         return;
                     }
-                    query(setReceiverBalance, function (err, vals, fields) {
+                    query(setReceiverBalance, async function (err, vals, fields) {
                         if (err) {
                             res.json({
                                 status: 1,
@@ -86,21 +88,28 @@ var exports = {
                             return;
                         }
 
-                        var inset_transfer = transferService.addRecord(sender, receiver, transfer_amount, transfer_type);
+                        var method_result = await createRecord(sender, receiver, transfer_amount, transfer_type);
 
-                        query(inset_transfer, function (err, vals, fields) {
-                            if (err) {
-                                res.json({
-                                    status: 1,
-                                    message: err,
-                                });
-                                return;
-                            }
-                            res.json({
-                                status: 0,
-                                message: '转账成功',
-                            });
+                        res.json({
+                            status: method_result.status,
+                            message: method_result.message,
                         });
+
+                        // var inset_transfer = transferService.addRecord(sender, receiver, transfer_amount, transfer_type);
+                        //
+                        // query(inset_transfer, function (err, vals, fields) {
+                        //     if (err) {
+                        //         res.json({
+                        //             status: 1,
+                        //             message: err,
+                        //         });
+                        //         return;
+                        //     }
+                        //     res.json({
+                        //         status: 0,
+                        //         message: '转账成功',
+                        //     });
+                        // });
                     });
                 });
 
@@ -138,7 +147,7 @@ var exports = {
 
             var balance = parseFloat(vals[0].balance) + recharge_amount;
             var setQuery = transferService.setBalance(receiver, balance);
-            query(setQuery, function (err, vals, fields) {
+            query(setQuery, async function (err, vals, fields) {
                 if (err) {
                     console.log(err);
                     res.json({
@@ -147,22 +156,30 @@ var exports = {
                     });
                     return;
                 }
-                var insertQuery = transferService.addRecord(sender, receiver, recharge_amount, type);
-                query(insertQuery, function (err, vals, fields) {
-                    if (err) {
-                        console.log(err);
-                        res.json({
-                            status: 1,
-                            message: err,
-                        });
-                        return;
-                    }
 
-                    res.json({
-                        status: 0,
-                        message: '充值成功',
-                    });
+                var method_result = await createRecord(sender, receiver, recharge_amount, type);
+
+                res.json({
+                    status: method_result.status,
+                    message: method_result.message,
                 });
+
+                // var insertQuery = transferService.addRecord(sender, receiver, recharge_amount, type);
+                // query(insertQuery, function (err, vals, fields) {
+                //     if (err) {
+                //         console.log(err);
+                //         res.json({
+                //             status: 1,
+                //             message: err,
+                //         });
+                //         return;
+                //     }
+                //
+                //     res.json({
+                //         status: 0,
+                //         message: '充值成功',
+                //     });
+                // });
             });
         });
     },
@@ -201,7 +218,7 @@ var exports = {
 
             var balance = parseFloat(vals[0].balance) - withdraw_amount;
             var setQuery = transferService.setBalance(sender, balance);
-            query(setQuery, function (err, vals, fields) {
+            query(setQuery, async function (err, vals, fields) {
                 if (err) {
                     console.log(err);
                     res.json({
@@ -210,27 +227,35 @@ var exports = {
                     });
                     return;
                 }
-                var insertQuery = transferService.addRecord(sender, receiver, withdraw_amount, type);
-                query(insertQuery, function (err, vals, fields) {
-                    if (err) {
-                        console.log(err);
-                        res.json({
-                            status: 1,
-                            message: err,
-                        });
-                        return;
-                    }
 
-                    res.json({
-                        status: 0,
-                        message: '提现成功',
-                    });
+                var method_result = await createRecord(sender, receiver, withdraw_amount, type);
+
+                res.json({
+                    status: method_result.status,
+                    message: method_result.message,
                 });
+
+                // var insertQuery = transferService.addRecord(sender, receiver, withdraw_amount, type);
+                // query(insertQuery, function (err, vals, fields) {
+                //     if (err) {
+                //         console.log(err);
+                //         res.json({
+                //             status: 1,
+                //             message: err,
+                //         });
+                //         return;
+                //     }
+                //
+                //     res.json({
+                //         status: 0,
+                //         message: '提现成功',
+                //     });
+                // });
             });
         });
     },
 
-    getRecordMethod: function (req, res, next) {
+    getRecordMethod: async function (req, res, next) {
         if (req.session['user'] === undefined) {
             res.json({
                 status: 1,
@@ -243,25 +268,42 @@ var exports = {
         var start = req.body.start;
         var pagesize = config.pagesize;
 
-        var getQuery = transferService.getRecord(user_phone, 0, pagesize);
+        var query_result = await queryRecord(user_phone);
+        console.log(query_result);
 
-        query(getQuery, function (err, vals, fields) {
-            if (err) {
-                res.json({
-                    status: 1,
-                    message: err,
-                });
-                return;
-            }
-            var ret_data = JSON.stringify(vals);
-            ret_data = JSON.parse(ret_data);
-
+        if (query_result.status === 0) {
             res.json({
-                status: 0,
-                message: '查询成功',
-                data: ret_data,
+                status: query_result.status,
+                message: query_result.message,
+                data: JSON.parse(query_result.data),
             });
-        });
+        } else {
+            console.log(query_result.message);
+            res.json({
+                status: query_result.status,
+                message: query_result.message,
+            });
+        }
+
+        // var getQuery = transferService.getRecord(user_phone, 0, pagesize);
+        //
+        // query(getQuery, function (err, vals, fields) {
+        //     if (err) {
+        //         res.json({
+        //             status: 1,
+        //             message: err,
+        //         });
+        //         return;
+        //     }
+        //     var ret_data = JSON.stringify(vals);
+        //     ret_data = JSON.parse(ret_data);
+        //
+        //     res.json({
+        //         status: 0,
+        //         message: '查询成功',
+        //         data: ret_data,
+        //     });
+        // });
     }
 };
 
