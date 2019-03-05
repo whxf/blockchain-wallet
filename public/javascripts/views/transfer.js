@@ -13,7 +13,7 @@ $(function () {
             alert('请输入收款人');
             return;
         }
-        if(checkPhone(phone)){
+        if (checkPhone(receiver) === false) {
             alert('请输入有效电话号码');
             return;
         }

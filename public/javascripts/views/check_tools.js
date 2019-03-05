@@ -12,5 +12,6 @@ function checkmoney(money) {
 }
 
 function checkPhone(phone) {
-    return /^1[34578]\d{9}$/.test(phone);
+    var pattern = /^1[0-9]{10}$/;
+    return pattern.test(phone);
 }

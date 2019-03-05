@@ -60,6 +60,10 @@ $(function () {
             alert('请输入电话号码');
             return;
         }
+        if (checkPhone(phone) === false) {
+            alert('请输入有效电话号码');
+            return;
+        }
         $.ajax({
             method: "post",
             url: "/api/sendMessage",

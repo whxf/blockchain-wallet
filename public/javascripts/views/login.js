@@ -17,7 +17,7 @@ $(function () {
             alert('请输入密码');
             return;
         }
-        if(checkPhone(phone)){
+        if (checkPhone(phone) === false) {
             alert('请输入有效电话号码');
             return;
         }

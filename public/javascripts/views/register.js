@@ -20,7 +20,7 @@ $(function () {
             alert('请输入电话号码');
             return;
         }
-        if(checkPhone(phone)){
+        if (checkPhone(phone) === false) {
             alert('请输入有效电话号码');
             return;
         }
@@ -87,7 +87,7 @@ $(function () {
             alert('请输入电话号码');
             return;
         }
-        if(checkPhone(phone)){
+        if (checkPhone(phone)) {
             alert('请输入有效电话号码');
             return;
         }
@@ -99,8 +99,7 @@ $(function () {
                 if (res.status === 1) {
                     alert(res.message);
                     window.location.assign('/register');
-                }
-                else {
+                } else {
                     alert(res.message);
                 }
             }
