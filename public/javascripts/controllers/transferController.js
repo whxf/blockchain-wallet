@@ -52,6 +52,7 @@ var exports = {
                 return;
             }
             sender_balance = balance - transfer_amount;
+            sender_balance = sender_balance.toFixed(2);
 
             var queryReceiverBalance = transferService.getBalance(receiver);
             query(queryReceiverBalance, function (err, vals, fields) {
@@ -66,6 +67,7 @@ var exports = {
                     return;
                 }
                 receiver_balance = balance + transfer_amount;
+                receiver_balance = receiver_balance.toFixed(2);
 
 
                 var setSenderBalance = transferService.setBalance(sender, sender_balance);
@@ -146,6 +148,7 @@ var exports = {
             }
 
             var balance = parseFloat(vals[0].balance) + recharge_amount;
+            balance = balance.toFixed(2);
             var setQuery = transferService.setBalance(receiver, balance);
             query(setQuery, async function (err, vals, fields) {
                 if (err) {
@@ -217,6 +220,7 @@ var exports = {
             }
 
             var balance = parseFloat(vals[0].balance) - withdraw_amount;
+            balance = balance.toFixed(2);
             var setQuery = transferService.setBalance(sender, balance);
             query(setQuery, async function (err, vals, fields) {
                 if (err) {
