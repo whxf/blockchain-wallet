@@ -13,6 +13,10 @@ $(function () {
             alert('请输入收款人');
             return;
         }
+        if(checkPhone(phone)){
+            alert('请输入有效电话号码');
+            return;
+        }
         if (is_null(transfer_amount)) {
             alert('请输入转账金额');
             return;

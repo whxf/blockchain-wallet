@@ -124,13 +124,13 @@ var exports = {
         });
     },
     changePasswordMethod: function (req, res, next) {
-        // if (req.session['user'] === undefined) {
-        //     res.json({
-        //         status: 1,
-        //         message: '请先登录',
-        //     });
-        //     return;
-        // }
+        if (req.session['user'] === undefined) {
+            res.json({
+                status: 1,
+                message: '请先登录',
+            });
+            return;
+        }
         var phone = req.body.phone;
         var input_password = req.body.password;
         input_password = bcrypt.hashSync(input_password, secret.hash_bcrypt);

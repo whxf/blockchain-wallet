@@ -4,16 +4,6 @@ $.ajaxSetup({
     }
 });
 
-
-function getNickname() {
-
-
-}
-
-function getBalance() {
-
-}
-
 $(function () {
     $(function () {
         var nickname;

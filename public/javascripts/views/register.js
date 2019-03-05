@@ -20,6 +20,10 @@ $(function () {
             alert('请输入电话号码');
             return;
         }
+        if(checkPhone(phone)){
+            alert('请输入有效电话号码');
+            return;
+        }
         if (is_null(verif_code)) {
             alert('请输入验证码');
             return;
@@ -81,6 +85,10 @@ $(function () {
         var phone = $("input[name='phone']").val();
         if (is_null(phone)) {
             alert('请输入电话号码');
+            return;
+        }
+        if(checkPhone(phone)){
+            alert('请输入有效电话号码');
             return;
         }
         $.ajax({
