@@ -31,8 +31,12 @@ var exports = {
         res.render('withdraw');
     },
 
-    information: function(req, res, next) {
+    information: function (req, res, next) {
         res.render('information');
+    },
+
+    changepwd: function (req, res, next) {
+        res.render('changepwd');
     },
 
 };

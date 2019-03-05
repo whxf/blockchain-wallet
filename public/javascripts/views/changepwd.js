@@ -5,56 +5,9 @@ $.ajaxSetup({
 });
 
 $(function () {
-    $(function () {
-        var nickname;
-        var balance;
-        var phone;
-
-        $.ajax({
-            method: "post",
-            url: "/api/getUserInfo",
-            success: function (res) {
-                if (res.status === 1) {
-                    alert('请先登录');
-                    window.location.assign('/login');
-                } else {
-                    nickname = res.nickname;
-                    balance = res.balance;
-                    phone = res.phone;
-
-                    var nickname_body = document.getElementById('nickname-input-box');
-                    nickname_body.innerHTML = "<input type='text' class='form-control' name='nickname' placeholder='" + nickname + "'>";
-
-                    var phone_body = document.getElementById('phone-input-box');
-                    phone_body.innerHTML = "<input id='phone' type='number' class='form-control' name='phone' disabled='' placeholder='" + phone + "'>";
-                }
-            }
-        });
-    });
-
-    $('#button-confirm-change-nickname').click(function () {
-        var nickname = $("input[name='nickname']").val();
-
-        console.log(nickname);
-
-        if (is_null(nickname)) {
-            alert('请输入新昵称！');
-            return;
-        }
-
-        $.ajax({
-            method: "post",
-            url: "/api/changeNickname",
-            data: {nickname: nickname},
-            success: function (res) {
-                alert(res.message);
-                window.location.assign('/dashboard');
-            }
-        });
-    });
 
     $('#send-message').click(function () {
-        var phone = document.getElementById('phone').getAttribute('placeholder');
+        var phone = $("input[name='phone']").val();
 
         if (is_null(phone)) {
             alert('请输入电话号码');
@@ -76,7 +29,7 @@ $(function () {
     });
 
     $('#button-confirm-change-password').click(function () {
-        var phone = document.getElementById('phone').getAttribute('placeholder');
+        var phone = $("input[name='phone']").val();
         var password = $("input[name='password']").val();
         var confirm_password = $("input[name='confirm-password']").val();
         var verif_code = $("input[name='code']").val();
@@ -117,7 +70,7 @@ $(function () {
                         data: {phone: phone, password: password},
                         success: function (res) {
                             alert(res.message);
-                            window.location.assign('/dashboard');
+                            window.location.assign('/login');
                         }
                     });
                 } else {
