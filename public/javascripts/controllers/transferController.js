@@ -55,7 +55,7 @@ var exports = {
             sender_balance = sender_balance.toFixed(2);
 
             var queryReceiverBalance = transferService.getBalance(receiver);
-            query(queryReceiverBalance, function (err, vals, fields) {
+            query(queryReceiverBalance, async function (err, vals, fields) {
 
                 var balance = parseFloat(vals[0].balance);
 
@@ -66,6 +66,17 @@ var exports = {
                     });
                     return;
                 }
+
+                var method_result = await createRecord(sender, receiver, transfer_amount, transfer_type);
+
+                if (method_result.status === 1) {
+                    res.json({
+                        status: 1,
+                        message: method_result.message
+                    });
+                    return;
+                }
+
                 receiver_balance = balance + transfer_amount;
                 receiver_balance = receiver_balance.toFixed(2);
 
@@ -81,7 +92,8 @@ var exports = {
                         });
                         return;
                     }
-                    query(setReceiverBalance, async function (err, vals, fields) {
+
+                    query(setReceiverBalance, function (err, vals, fields) {
                         if (err) {
                             res.json({
                                 status: 1,
@@ -89,8 +101,6 @@ var exports = {
                             });
                             return;
                         }
-
-                        var method_result = await createRecord(sender, receiver, transfer_amount, transfer_type);
 
                         res.json({
                             status: method_result.status,
@@ -136,13 +146,23 @@ var exports = {
         var receiver = req.session.user.phone;
 
         var getQuery = transferService.getBalance(receiver);
-        query(getQuery, function (err, vals, fields) {
+        query(getQuery, async function (err, vals, fields) {
             console.log(vals);
             if (err) {
                 console.log(err);
                 res.json({
                     status: 1,
                     message: err,
+                });
+                return;
+            }
+
+            var method_result = await createRecord(sender, receiver, recharge_amount, type);
+
+            if (method_result.status === 1) {
+                res.json({
+                    status: 1,
+                    message: method_result.message
                 });
                 return;
             }
@@ -159,8 +179,6 @@ var exports = {
                     });
                     return;
                 }
-
-                var method_result = await createRecord(sender, receiver, recharge_amount, type);
 
                 res.json({
                     status: method_result.status,
@@ -201,7 +219,7 @@ var exports = {
         var receiver = 'alipay';
 
         var getQuery = transferService.getBalance(sender);
-        query(getQuery, function (err, vals, fields) {
+        query(getQuery, async function (err, vals, fields) {
             console.log(vals);
             if (err) {
                 res.json({
@@ -219,10 +237,20 @@ var exports = {
                 return;
             }
 
+            var method_result = await createRecord(sender, receiver, withdraw_amount, type);
+
+            if (method_result.status === 1) {
+                res.json({
+                    status: 1,
+                    message: method_result.message
+                });
+                return;
+            }
+
             var balance = parseFloat(vals[0].balance) - withdraw_amount;
             balance = balance.toFixed(2);
             var setQuery = transferService.setBalance(sender, balance);
-            query(setQuery, async function (err, vals, fields) {
+            query(setQuery, function (err, vals, fields) {
                 if (err) {
                     console.log(err);
                     res.json({
@@ -231,8 +259,6 @@ var exports = {
                     });
                     return;
                 }
-
-                var method_result = await createRecord(sender, receiver, withdraw_amount, type);
 
                 res.json({
                     status: method_result.status,
