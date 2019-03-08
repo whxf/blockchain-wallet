@@ -8,6 +8,8 @@ $(function () {
     $('#button-confirm-transfer').click(function () {
         var receiver = $("input[name='receiver']").val();
         var transfer_amount = $("input[name='transfer_amount']").val();
+        var password = $("input[name='transfer_password']").val();
+
 
         if (is_null(receiver)) {
             alert('请输入收款人');
@@ -32,7 +34,7 @@ $(function () {
         $.ajax({
             method: "post",
             url: "/transfer",
-            data: {receiver: receiver, transfer_amount: transfer_amount},
+            data: {receiver: receiver, transfer_amount: transfer_amount, password: password},
             success: function (res) {
                 if (res.status === 0) {
                     alert('转账成功！');
@@ -51,6 +53,7 @@ $(function () {
 
     $('#button-confirm-recharge').click(function () {
         var recharge_amount = $("input[name='recharge_amount']").val();
+        var password = $("input[name='transfer_password']").val();
         if (is_null(recharge_amount)) {
             alert('请输入充值金额');
             return;
@@ -67,7 +70,7 @@ $(function () {
         $.ajax({
             method: "post",
             url: "/recharge",
-            data: {recharge_amount: recharge_amount},
+            data: {recharge_amount: recharge_amount, password: password},
             success: function (res) {
                 if (res.status === 0) {
                     alert('充值成功！');
@@ -85,6 +88,8 @@ $(function () {
 
     $('#button-confirm-withdraw').click(function () {
         var withdraw_amount = $("input[name='withdraw_amount']").val();
+        var password = $("input[name='transfer_password']").val();
+
         if (is_null(withdraw_amount)) {
             alert('请输入提现金额');
             return;
@@ -101,7 +106,7 @@ $(function () {
         $.ajax({
             method: "post",
             url: "/withdraw",
-            data: {withdraw_amount: withdraw_amount},
+            data: {withdraw_amount: withdraw_amount, password: password},
             success: function (res) {
                 if (res.status === 0) {
                     alert('提现成功！');
