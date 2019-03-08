@@ -6,6 +6,7 @@ $.ajaxSetup({
 
 $(function () {
     $('#button-confirm-transfer').click(function () {
+        this.disabled = true;
         var receiver = $("input[name='receiver']").val();
         var transfer_amount = $("input[name='transfer_amount']").val();
         var password = $("input[name='transfer_password']").val();
@@ -52,6 +53,7 @@ $(function () {
     });
 
     $('#button-confirm-recharge').click(function () {
+        this.disabled = true;
         var recharge_amount = $("input[name='recharge_amount']").val();
         var password = $("input[name='recharge_password']").val();
         if (is_null(recharge_amount)) {
@@ -87,6 +89,7 @@ $(function () {
     });
 
     $('#button-confirm-withdraw').click(function () {
+        this.disabled = true;
         var withdraw_amount = $("input[name='withdraw_amount']").val();
         var password = $("input[name='withdraw_password']").val();
 
