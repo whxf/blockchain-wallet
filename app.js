@@ -5,14 +5,12 @@ var path = require('path');
 var logger = require('morgan');
 var session = require('express-session');
 var secret = require('./public/javascripts/constants/secret');
-var ioRedis = require('ioredis');
 const RedisStore = require('connect-redis')(session);
 var redis_config = require('./public/javascripts/constants/db').redis_config;
 
 
 //路由
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/api');
 
 var app = express();
@@ -32,17 +30,11 @@ app.use(express.urlencoded({extended: false}));
 
 // app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-// app.use(session({
-//     secret: secret.session_secret,
-//     resave: false,
-//     saveUninitialized: true,
-// }));
-
 app.use(session({
     secret: secret.session_secret,
     resave: true,
-    rolling: true,
     saveUninitialized: false,
+    rolling: true,
     cookie: redis_config.cookie,
     store: new RedisStore(redis_config.sessionStore)
 }));

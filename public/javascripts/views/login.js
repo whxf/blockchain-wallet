@@ -5,7 +5,20 @@ $.ajaxSetup({
 });
 
 $(function () {
+    $(function () {
+        $.ajax({
+            method: "post",
+            url: "/api/getUserInfo",
+            success: function (res) {
+                if (res.status === 0) {
+                    window.location.assign('/dashboard');
+                }
+            }
+        });
+    });
+
     $('#button-login').click(function () {
+
         var phone = $("input[name='phone']").val();
         var password = $("input[name='password']").val();
 

@@ -38,6 +38,7 @@ var exports = {
                     'id': user.id,
                     'nickname': user.nickname,
                     'phone': user.phone,
+                    'error_time': 0,
                 };
 
                 res.json({

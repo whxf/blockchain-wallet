@@ -31,6 +31,13 @@ exports = {
         sql = mysql.format(sql, inserts);
         return sql
     },
+    setUserFreezeTime: function (phone) {
+        // var sql = "update users set freeze_time = ? where phone = ? ";
+        // var freeze_time = ;
+        // var inserts = [freeze_time, phone];
+        // sql = mysql.format(sql, inserts);
+        // return sql
+    },
 };
 
 module.exports = exports;

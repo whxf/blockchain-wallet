@@ -27,6 +27,7 @@ router.get('/withdraw', index_controller.withdraw);
 router.post('/withdraw', transfer_controller.withdrawMethod);
 
 router.get('/information', index_controller.information);
+
 router.get('/changepwd', index_controller.changepwd);
 
 
