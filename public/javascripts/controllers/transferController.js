@@ -4,9 +4,20 @@ var transferService = require('../services/transferService');
 var userService = require('../services/userService');
 var config = require('../constants/conf');
 var bcrypt = require('bcrypt-nodejs');
+require('date-utils');
 
 var createRecord = require('./blockchainController').createRecord;
 var queryRecord = require('./blockchainController').queryRecord;
+
+function freeze_user(user_phone) {
+    var freeze_sql = userService.setUserFreezeTime(user_phone);
+    query(freeze_sql, function (err, vals, fields) {
+        if (err) {
+            return false
+        }
+    });
+    return true;
+}
 
 var exports = {
     transferMethod: async function (req, res, next) {
@@ -39,10 +50,35 @@ var exports = {
             }
 
             var password = vals[0].transfer_password;
-            if (bcrypt.compareSync(transfer_password, password) === false) {
+            console.log(vals[0].freeze_time);
+            console.log(new Date());
+
+            if (vals[0].freeze_time >= (new Date())) {
                 res.json({
                     status: 1,
-                    message: '支付密码输入错误',
+                    message: '账户冻结中，请稍后尝试！',
+                });
+                return;
+            }
+
+            if (bcrypt.compareSync(transfer_password, password) === false) {
+                req.session.user.error_time += 1;
+                if (req.session.user.error_time >= 5) {
+                    if (freeze_user(req.session.user.phone)) {
+                        res.json({
+                            status: 1,
+                            message: '支付密码输错次数过多，账户冻结5小时！',
+                        });
+                        return;
+                    }
+                }
+                var time_leave = 5-req.session.user.error_time;
+                if (time_leave < 0){
+                    time_leave = 0;
+                }
+                res.json({
+                    status: 1,
+                    message: '支付密码输入错误，还剩'+(time_leave).toString()+'次尝试机会！',
                 });
                 return;
             }
@@ -181,13 +217,37 @@ var exports = {
             }
 
             var password = vals[0].transfer_password;
-            if (bcrypt.compareSync(transfer_password, password) === false) {
+
+            if (vals[0].freeze_time >= (new Date())) {
                 res.json({
                     status: 1,
-                    message: '支付密码输入错误',
+                    message: '账户冻结中，请稍后尝试！',
                 });
                 return;
             }
+
+            if (bcrypt.compareSync(transfer_password, password) === false) {
+                req.session.user.error_time += 1;
+                if (req.session.user.error_time >= 5) {
+                    if (freeze_user(req.session.user.phone)) {
+                        res.json({
+                            status: 1,
+                            message: '支付密码输错次数过多，账户冻结5小时！',
+                        });
+                        return;
+                    }
+                }
+                var time_leave = 5-req.session.user.error_time;
+                if (time_leave < 0){
+                    time_leave = 0;
+                }
+                res.json({
+                    status: 1,
+                    message: '支付密码输入错误，还剩'+(time_leave).toString()+'次尝试机会！',
+                });
+                return;
+            }
+
 
             var getQuery = transferService.getBalance(receiver);
             query(getQuery, async function (err, vals, fields) {
@@ -277,10 +337,35 @@ var exports = {
             }
 
             var password = vals[0].transfer_password;
-            if (bcrypt.compareSync(transfer_password, password) === false) {
+
+            if (vals[0].freeze_time >= (new Date())) {
                 res.json({
                     status: 1,
-                    message: '支付密码输入错误',
+                    message: '账户冻结中，请稍后尝试！',
+                });
+                return;
+            }
+
+            if (bcrypt.compareSync(transfer_password, password) === false) {
+                req.session.user.error_time += 1;
+                // console.log(req.session.user.error_time );
+                if (req.session.user.error_time >= 5) {
+                    if (freeze_user(req.session.user.phone)) {
+                        console.log(1);
+                        res.json({
+                            status: 1,
+                            message: '支付密码输错次数过多，账户冻结5小时！',
+                        });
+                        return;
+                    }
+                }
+                var time_leave = 5-req.session.user.error_time;
+                if (time_leave < 0){
+                    time_leave = 0;
+                }
+                res.json({
+                    status: 1,
+                    message: '支付密码输入错误，还剩'+(time_leave).toString()+'次尝试机会！',
                 });
                 return;
             }

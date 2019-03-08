@@ -1,4 +1,5 @@
 var mysql = require('mysql');
+require('date-utils');
 
 exports = {
     getUserByPhone: function (phone) {
@@ -38,11 +39,11 @@ exports = {
         return sql
     },
     setUserFreezeTime: function (phone) {
-        // var sql = "update users set freeze_time = ? where phone = ? ";
-        // var freeze_time = ;
-        // var inserts = [freeze_time, phone];
-        // sql = mysql.format(sql, inserts);
-        // return sql
+        var sql = "update users set freeze_time = ? where phone = ? ";
+        var freeze_time = (new Date()).addHours(5);
+        var inserts = [freeze_time, phone];
+        sql = mysql.format(sql, inserts);
+        return sql
     },
 };
 
