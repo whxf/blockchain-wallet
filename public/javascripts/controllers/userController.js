@@ -34,12 +34,14 @@ var exports = {
 
             // 与数据库中密码数据进行比对
             if (bcrypt.compareSync(input_password, user.password)) {
-                req.session.user = {
-                    'id': user.id,
-                    'nickname': user.nickname,
-                    'phone': user.phone,
-                    'error_time': 0,
-                };
+                if (req.session['user'] === undefined) {
+                    req.session.user = {
+                        'id': user.id,
+                        'nickname': user.nickname,
+                        'phone': user.phone,
+                        'error_time': 0,
+                    };
+                }
 
                 res.json({
                     status: 0,
@@ -154,7 +156,7 @@ var exports = {
             }
         });
     },
-    changeTransferPasswordMethod:function (req, res, next) {
+    changeTransferPasswordMethod: function (req, res, next) {
         if (req.session['user'] === undefined) {
             res.json({
                 status: 1,

@@ -53,7 +53,7 @@ $(function () {
 
     $('#button-confirm-recharge').click(function () {
         var recharge_amount = $("input[name='recharge_amount']").val();
-        var password = $("input[name='transfer_password']").val();
+        var password = $("input[name='recharge_password']").val();
         if (is_null(recharge_amount)) {
             alert('请输入充值金额');
             return;
@@ -88,7 +88,7 @@ $(function () {
 
     $('#button-confirm-withdraw').click(function () {
         var withdraw_amount = $("input[name='withdraw_amount']").val();
-        var password = $("input[name='transfer_password']").val();
+        var password = $("input[name='withdraw_password']").val();
 
         if (is_null(withdraw_amount)) {
             alert('请输入提现金额');

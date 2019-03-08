@@ -25,7 +25,6 @@ var exports = {
         var transfer_amount = parseFloat(req.body.transfer_amount);
         var transfer_password = req.body.password;
 
-
         if (req.session['user'] === undefined) {
             res.json({
                 status: 1,
@@ -36,7 +35,6 @@ var exports = {
 
         var sender = req.session.user.phone;
         var transfer_type = '2';
-
 
         var sql = userService.getUserByPhone(sender);
         query(sql, function (err, vals, fields) {
@@ -72,13 +70,13 @@ var exports = {
                         return;
                     }
                 }
-                var time_leave = 5-req.session.user.error_time;
-                if (time_leave < 0){
+                var time_leave = 5 - req.session.user.error_time;
+                if (time_leave < 0) {
                     time_leave = 0;
                 }
                 res.json({
                     status: 1,
-                    message: '支付密码输入错误，还剩'+(time_leave).toString()+'次尝试机会！',
+                    message: '支付密码输入错误，还剩' + (time_leave).toString() + '次尝试机会！',
                 });
                 return;
             }
@@ -96,7 +94,6 @@ var exports = {
 
             var querySenderBalance = transferService.getBalance(sender);
             query(querySenderBalance, function (err, vals, fields) {
-                var balance = parseFloat(vals[0].balance);
                 if (err) {
                     res.json({
                         status: 1,
@@ -104,6 +101,7 @@ var exports = {
                     });
                     return;
                 }
+                var balance = parseFloat(vals[0].balance);
                 if (balance < transfer_amount) {
                     res.json({
                         status: 1,
@@ -117,8 +115,6 @@ var exports = {
                 var queryReceiverBalance = transferService.getBalance(receiver);
                 query(queryReceiverBalance, async function (err, vals, fields) {
 
-                    var balance = parseFloat(vals[0].balance);
-
                     if (err) {
                         res.json({
                             status: 1,
@@ -127,6 +123,7 @@ var exports = {
                         return;
                     }
 
+                    var balance = parseFloat(vals[0].balance);
                     var method_result = await createRecord(sender, receiver, transfer_amount, transfer_type);
 
                     if (method_result.status === 1) {
@@ -237,13 +234,13 @@ var exports = {
                         return;
                     }
                 }
-                var time_leave = 5-req.session.user.error_time;
-                if (time_leave < 0){
+                var time_leave = 5 - req.session.user.error_time;
+                if (time_leave < 0) {
                     time_leave = 0;
                 }
                 res.json({
                     status: 1,
-                    message: '支付密码输入错误，还剩'+(time_leave).toString()+'次尝试机会！',
+                    message: '支付密码输入错误，还剩' + (time_leave).toString() + '次尝试机会！',
                 });
                 return;
             }
@@ -359,13 +356,13 @@ var exports = {
                         return;
                     }
                 }
-                var time_leave = 5-req.session.user.error_time;
-                if (time_leave < 0){
+                var time_leave = 5 - req.session.user.error_time;
+                if (time_leave < 0) {
                     time_leave = 0;
                 }
                 res.json({
                     status: 1,
-                    message: '支付密码输入错误，还剩'+(time_leave).toString()+'次尝试机会！',
+                    message: '支付密码输入错误，还剩' + (time_leave).toString() + '次尝试机会！',
                 });
                 return;
             }
