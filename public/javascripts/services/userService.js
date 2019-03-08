@@ -7,9 +7,9 @@ exports = {
         sql = mysql.format(sql, inserts);
         return sql;
     },
-    addUser: function (nickname, phone, password) {
-        var sql = "insert into users (nickname, phone, password)  values ( ? , ? , ? ) ";
-        var inserts = [nickname, phone, password];
+    addUser: function (nickname, phone, password, transfer_password) {
+        var sql = "insert into users (nickname, phone, password, transfer_password)  values ( ? , ? , ? , ? ) ";
+        var inserts = [nickname, phone, password, transfer_password];
         sql = mysql.format(sql, inserts);
         return sql;
     },
@@ -27,6 +27,12 @@ exports = {
     },
     setUserPassword: function (phone, password) {
         var sql = "update users set password = ? where phone = ? ";
+        var inserts = [password, phone];
+        sql = mysql.format(sql, inserts);
+        return sql
+    },
+    setUserTransferPassword:function (phone, password) {
+        var sql = "update users set transfer_password = ? where phone = ? ";
         var inserts = [password, phone];
         sql = mysql.format(sql, inserts);
         return sql

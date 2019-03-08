@@ -9,6 +9,8 @@ var query = require('../public/javascripts/controllers/dataController');
 var QcloudSms = require('qcloudsms_js');
 var secret = require('../public/javascripts/constants/secret');
 
+// ================ get method =====================
+
 router.post('/getRecord', transfer_controller.getRecordMethod);
 
 router.post('/getSessionData', function (req, res, next) {
@@ -63,6 +65,33 @@ router.post('/getUserInfo', function (req, res, next) {
     });
 });
 
+router.post('/getVerificationCode', function (req, res, next) {
+    if (req.session['code'] === undefined) {
+        res.json({
+            status: 1,
+            message: '请重新发送短信，获取验证码',
+            data: null
+        });
+        return
+    }
+
+    res.json({
+        status: 0,
+        message: "获取验证码成功",
+        data: req.session.code
+    });
+});
+
+// ================ set method =====================
+
+router.post('/changeNickname', user_controller.changeNicknameMethod);
+
+router.post('/changePassword', user_controller.changePasswordMethod);
+
+router.post('/changeTransferPassword', user_controller.changeTransferPasswordMethod);
+
+// ================ 短信 method =====================
+
 router.post('/sendMessage', function (req, res, next) {
     var user_phone = req.body.phone;
     var appid = secret.message_sdk_appid;
@@ -94,27 +123,7 @@ router.post('/sendMessage', function (req, res, next) {
         params, smsSign, "", "", callback);
 });
 
-router.post('/getVerificationCode', function (req, res, next) {
-    if (req.session['code'] === undefined) {
-        res.json({
-            status: 1,
-            message: '请重新发送短信，获取验证码',
-            data: null
-        });
-        return
-    }
-
-    res.json({
-        status: 0,
-        message: "获取验证码成功",
-        data: req.session.code
-    });
-
-});
-
-router.post('/changeNickname', user_controller.changeNicknameMethod);
-
-router.post('/changePassword', user_controller.changePasswordMethod);
+// ================ check method =====================
 
 router.post('/checkLogin', function (req, res, next) {
     if (req.session['user'] === undefined) {

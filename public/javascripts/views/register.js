@@ -11,6 +11,8 @@ $(function () {
         var verif_code = $("input[name='code']").val();
         var password = $("input[name='password']").val();
         var confirm_password = $("input[name='confirm-password']").val();
+        var transfer_password = $("input[name='transfer-password']").val();
+        var confirm_transfer_password = $("input[name='confirm-transfer-password']").val();
 
         if (is_null(nickname)) {
             alert('请输入昵称');
@@ -29,18 +31,34 @@ $(function () {
             return;
         }
         if (is_null(password)) {
-            alert('请输入密码');
+            alert('请输入登录密码');
             return;
         }
         if (is_null(confirm_password)) {
-            alert('请确认密码');
+            alert('请确认登录密码');
             return;
         }
 
         if (password !== confirm_password) {
-            alert('密码不同，请重新输入密码');
+            alert('登录密码不同，请重新输入登录密码');
             password = '';
             confirm_password = '';
+            return;
+        }
+
+        if (is_null(transfer_password)) {
+            alert('请输入支付密码');
+            return;
+        }
+        if (is_null(confirm_transfer_password)) {
+            alert('请确认支付密码');
+            return;
+        }
+
+        if (transfer_password !== confirm_transfer_password) {
+            alert('支付密码不同，请重新输入支付密码');
+            transfer_password = '';
+            confirm_transfer_password = '';
             return;
         }
 
@@ -60,7 +78,12 @@ $(function () {
                     $.ajax({
                         method: "post",
                         url: "/register",
-                        data: {nickname: nickname, phone: phone, password: password},
+                        data: {
+                            nickname: nickname,
+                            phone: phone,
+                            password: password,
+                            transfer_password: transfer_password
+                        },
                         success: function (res) {
                             if (res.status === 0) {
                                 window.location.assign('/login');
@@ -87,7 +110,7 @@ $(function () {
             alert('请输入电话号码');
             return;
         }
-        if (checkPhone(phone)) {
+        if (checkPhone(phone) === false) {
             alert('请输入有效电话号码');
             return;
         }

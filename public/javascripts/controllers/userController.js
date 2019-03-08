@@ -58,7 +58,9 @@ var exports = {
         var input_nickname = req.body.nickname;
         var input_phone = req.body.phone;
         var input_password = req.body.password;
+        var input_transfer_password = req.body.transfer_password;
         input_password = bcrypt.hashSync(input_password, secret.hash_bcrypt);
+        input_transfer_password = bcrypt.hashSync(input_transfer_password, secret.hash_bcrypt);
 
         var sql = userService.getUserByPhone(input_phone);
         query(sql, function (err, vals, fields) {
@@ -79,7 +81,7 @@ var exports = {
                 return;
             }
 
-            var sql2 = userService.addUser(input_nickname, input_phone, input_password);
+            var sql2 = userService.addUser(input_nickname, input_phone, input_password, input_transfer_password);
             query(sql2, function (err, vals, fields) {
                 // mysql insert 出现错误
                 if (err) {
@@ -137,6 +139,34 @@ var exports = {
         input_password = bcrypt.hashSync(input_password, secret.hash_bcrypt);
 
         var sql = userService.setUserPassword(phone, input_password);
+
+        query(sql, function (err, vals, fields) {
+            if (err) {
+                res.json({
+                    status: 1,
+                    message: err,
+                });
+            } else {
+                res.json({
+                    status: 0,
+                    message: '修改密码成功！',
+                });
+            }
+        });
+    },
+    changeTransferPasswordMethod:function (req, res, next) {
+        if (req.session['user'] === undefined) {
+            res.json({
+                status: 1,
+                message: '请先登录',
+            });
+            return;
+        }
+        var phone = req.body.phone;
+        var input_password = req.body.password;
+        input_password = bcrypt.hashSync(input_password, secret.hash_bcrypt);
+
+        var sql = userService.setUserTransferPassword(phone, input_password);
 
         query(sql, function (err, vals, fields) {
             if (err) {

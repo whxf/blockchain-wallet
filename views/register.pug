@@ -21,11 +21,17 @@ block content
                             |
                             a#send-message(href='#')  发送验证码
                         div.form-group
-                            div.label 密码
+                            div.label 登录密码
                             input(name='password').form-control(type="password")
                         div.form-group
-                            div.label   确认密码
+                            div.label 确认登录密码
                             input(name='confirm-password').form-control(type="password")
+                        div.form-group
+                            div.label 支付密码
+                            input(name='transfer-password').form-control(type="password")
+                        div.form-group
+                            div.label 支付密码
+                            input(name='confirm-transfer-password').form-control(type="password")
                         button#button-register.btn.btn-secondary(type='button') 注册
                 div.col-lg-3.col-md-2
 

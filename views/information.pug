@@ -15,23 +15,33 @@ block content
                             label 昵称
                             div#nickname-input-box
                         button#button-confirm-change-nickname.btn.btn-secondary(type='button') 确认修改昵称
-                    form
+                    form.pad-bottom-md
                         div.form-group
                             label 手机号
                             div#phone-input-box
+                    h7.text-info 修改登录密码或支付密码需要进行手机短信认证！
                     form
-                        div.form-group
-                            div.label 密码
-                            input(name='password').form-control(type="password")
-                        div.form-group
-                            div.label   确认密码
-                            input(name='confirm-password').form-control(type="password")
                         div.form-group
                             label 验证码
                             input(name='code').form-control(type="number")
                             |
                             a#send-message(href='#')  发送验证码
-                        button#button-confirm-change-password.btn.btn-secondary(type='button') 确认修改密码
+
+                        div.form-group
+                            div.label 新登录密码
+                            input(name='password').form-control(type="password")
+                        div.form-group
+                            div.label   确认登录密码
+                            input(name='confirm-password').form-control(type="password")
+                        button#button-confirm-change-password.btn.btn-secondary(type='button') 确认修改登录密码
+
+                        div.form-group
+                            div.label 新支付密码
+                            input(name='transfer-password').form-control(type="password")
+                        div.form-group
+                            div.label   确认支付密码
+                            input(name='confirm-transfer-password').form-control(type="password")
+                        button#button-confirm-change-transfer-password.btn.btn-secondary(type='button') 确认修改支付密码
                 div.col-lg-3.col-md-2
 
 block scripts
