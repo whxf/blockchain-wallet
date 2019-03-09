@@ -80,6 +80,7 @@ var exports = {
                 });
                 return;
             }
+            req.session.user.error_time = 0;
 
             if (sender === receiver) {
                 res.json({
@@ -244,7 +245,7 @@ var exports = {
                 });
                 return;
             }
-
+            req.session.user.error_time = 0;
 
             var getQuery = transferService.getBalance(receiver);
             query(getQuery, async function (err, vals, fields) {
@@ -366,6 +367,7 @@ var exports = {
                 });
                 return;
             }
+            req.session.user.error_time = 0;
 
             var getQuery = transferService.getBalance(sender);
             query(getQuery, async function (err, vals, fields) {

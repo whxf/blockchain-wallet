@@ -177,6 +177,7 @@ var exports = {
                     message: err,
                 });
             } else {
+                req.session.user.error_time = 0;
                 res.json({
                     status: 0,
                     message: '修改密码成功！',
