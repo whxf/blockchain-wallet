@@ -3,7 +3,6 @@ var router = express.Router();
 
 var user_controller = require('../public/javascripts/controllers/userController');
 var transfer_controller = require('../public/javascripts/controllers/transferController');
-var transferService = require('../public/javascripts/services/transferService');
 var query = require('../public/javascripts/controllers/dataController');
 
 var QcloudSms = require('qcloudsms_js');
@@ -39,7 +38,7 @@ router.post('/getUserInfo', function (req, res, next) {
         });
         return;
     }
-    var querySql = transferService.getBalance(req.session.user.phone);
+    var querySql = userService.getBalance(req.session.user.phone);
 
     query(querySql, function (err, vals, fields) {
         if (err) {

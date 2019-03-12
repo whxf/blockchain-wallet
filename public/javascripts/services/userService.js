@@ -2,21 +2,27 @@ var mysql = require('mysql');
 require('date-utils');
 
 exports = {
-    getUserByPhone: function (phone) {
-        var sql = "select * from  users where phone = ? ";
-        var inserts = [phone];
-        sql = mysql.format(sql, inserts);
-        return sql;
-    },
     addUser: function (nickname, phone, password, transfer_password) {
         var sql = "insert into users (nickname, phone, password, transfer_password)  values ( ? , ? , ? , ? ) ";
         var inserts = [nickname, phone, password, transfer_password];
         sql = mysql.format(sql, inserts);
         return sql;
     },
-    getUserById: function (id) {
-        var sql = "select * from  users where id = ? ";
-        var inserts = [id];
+    getUserByPhone: function (phone) {
+        var sql = "select * from  users where phone = ? ";
+        var inserts = [phone];
+        sql = mysql.format(sql, inserts);
+        return sql;
+    },
+    getBalance: function (phone) {
+        var sql = "select balance from users where phone = ? ";
+        var inserts = [phone];
+        sql = mysql.format(sql, inserts);
+        return sql;
+    },
+    setBalance: function (phone, balance) {
+        var sql = "update users set balance = ? where phone = ? ";
+        var inserts = [balance, phone];
         sql = mysql.format(sql, inserts);
         return sql;
     },

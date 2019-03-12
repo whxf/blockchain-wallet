@@ -1,6 +1,5 @@
 var format = require('string-format');
 var query = require('./dataController');
-var transferService = require('../services/transferService');
 var userService = require('../services/userService');
 var config = require('../constants/conf');
 var bcrypt = require('bcrypt-nodejs');
@@ -93,7 +92,7 @@ var exports = {
             var sender_balance;
             var receiver_balance;
 
-            var querySenderBalance = transferService.getBalance(sender);
+            var querySenderBalance = userService.getBalance(sender);
             query(querySenderBalance, function (err, vals, fields) {
                 if (err) {
                     res.json({
@@ -113,7 +112,7 @@ var exports = {
                 sender_balance = balance - transfer_amount;
                 sender_balance = sender_balance.toFixed(2);
 
-                var queryReceiverBalance = transferService.getBalance(receiver);
+                var queryReceiverBalance = userService.getBalance(receiver);
                 query(queryReceiverBalance, async function (err, vals, fields) {
 
                     if (err) {
@@ -139,8 +138,8 @@ var exports = {
                     receiver_balance = receiver_balance.toFixed(2);
 
 
-                    var setSenderBalance = transferService.setBalance(sender, sender_balance);
-                    var setReceiverBalance = transferService.setBalance(receiver, receiver_balance);
+                    var setSenderBalance = userService.setBalance(sender, sender_balance);
+                    var setReceiverBalance = userService.setBalance(receiver, receiver_balance);
 
                     query(setSenderBalance, function (err, vals, fields) {
                         if (err) {
@@ -164,22 +163,6 @@ var exports = {
                                 status: method_result.status,
                                 message: method_result.message,
                             });
-
-                            // var inset_transfer = transferService.addRecord(sender, receiver, transfer_amount, transfer_type);
-                            //
-                            // query(inset_transfer, function (err, vals, fields) {
-                            //     if (err) {
-                            //         res.json({
-                            //             status: 1,
-                            //             message: err,
-                            //         });
-                            //         return;
-                            //     }
-                            //     res.json({
-                            //         status: 0,
-                            //         message: '转账成功',
-                            //     });
-                            // });
                         });
                     });
                 });
@@ -247,7 +230,7 @@ var exports = {
             }
             req.session.user.error_time = 0;
 
-            var getQuery = transferService.getBalance(receiver);
+            var getQuery = userService.getBalance(receiver);
             query(getQuery, async function (err, vals, fields) {
                 console.log(vals);
                 if (err) {
@@ -271,7 +254,7 @@ var exports = {
 
                 var balance = parseFloat(vals[0].balance) + recharge_amount;
                 balance = balance.toFixed(2);
-                var setQuery = transferService.setBalance(receiver, balance);
+                var setQuery = userService.setBalance(receiver, balance);
                 query(setQuery, async function (err, vals, fields) {
                     if (err) {
                         console.log(err);
@@ -286,23 +269,6 @@ var exports = {
                         status: method_result.status,
                         message: method_result.message,
                     });
-
-                    // var insertQuery = transferService.addRecord(sender, receiver, recharge_amount, type);
-                    // query(insertQuery, function (err, vals, fields) {
-                    //     if (err) {
-                    //         console.log(err);
-                    //         res.json({
-                    //             status: 1,
-                    //             message: err,
-                    //         });
-                    //         return;
-                    //     }
-                    //
-                    //     res.json({
-                    //         status: 0,
-                    //         message: '充值成功',
-                    //     });
-                    // });
                 });
             });
         });
@@ -369,7 +335,7 @@ var exports = {
             }
             req.session.user.error_time = 0;
 
-            var getQuery = transferService.getBalance(sender);
+            var getQuery = userService.getBalance(sender);
             query(getQuery, async function (err, vals, fields) {
                 console.log(vals);
                 if (err) {
@@ -400,7 +366,7 @@ var exports = {
 
                 var balance = parseFloat(vals[0].balance) - withdraw_amount;
                 balance = balance.toFixed(2);
-                var setQuery = transferService.setBalance(sender, balance);
+                var setQuery = userService.setBalance(sender, balance);
                 query(setQuery, function (err, vals, fields) {
                     if (err) {
                         console.log(err);
@@ -415,23 +381,6 @@ var exports = {
                         status: method_result.status,
                         message: method_result.message,
                     });
-
-                    // var insertQuery = transferService.addRecord(sender, receiver, withdraw_amount, type);
-                    // query(insertQuery, function (err, vals, fields) {
-                    //     if (err) {
-                    //         console.log(err);
-                    //         res.json({
-                    //             status: 1,
-                    //             message: err,
-                    //         });
-                    //         return;
-                    //     }
-                    //
-                    //     res.json({
-                    //         status: 0,
-                    //         message: '提现成功',
-                    //     });
-                    // });
                 });
             });
         });
@@ -466,26 +415,6 @@ var exports = {
                 message: query_result.message,
             });
         }
-
-        // var getQuery = transferService.getRecord(user_phone, 0, pagesize);
-        //
-        // query(getQuery, function (err, vals, fields) {
-        //     if (err) {
-        //         res.json({
-        //             status: 1,
-        //             message: err,
-        //         });
-        //         return;
-        //     }
-        //     var ret_data = JSON.stringify(vals);
-        //     ret_data = JSON.parse(ret_data);
-        //
-        //     res.json({
-        //         status: 0,
-        //         message: '查询成功',
-        //         data: ret_data,
-        //     });
-        // });
     }
 };
 
