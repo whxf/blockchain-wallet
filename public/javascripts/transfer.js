@@ -8,8 +8,8 @@ $(function () {
     $('#button-confirm-transfer').click(function () {
         this.disabled = true;
         var receiver = $("input[name='receiver']").val();
-        var transfer_amount = $("input[name='transfer_amount']").val();
-        var password = $("input[name='transfer_password']").val();
+        var transfer_amount = $("input[name='transfer-amount']").val();
+        var password = $("input[name='transfer-password']").val();
 
 
         if (is_null(receiver)) {
@@ -56,8 +56,8 @@ $(function () {
 
     $('#button-confirm-recharge').click(function () {
         this.disabled = true;
-        var recharge_amount = $("input[name='recharge_amount']").val();
-        var password = $("input[name='recharge_password']").val();
+        var recharge_amount = $("input[name='recharge-amount']").val();
+        var password = $("input[name='recharge-password']").val();
         if (is_null(recharge_amount)) {
             alert('请输入充值金额');
             return;
@@ -94,8 +94,8 @@ $(function () {
 
     $('#button-confirm-withdraw').click(function () {
         this.disabled = true;
-        var withdraw_amount = $("input[name='withdraw_amount']").val();
-        var password = $("input[name='withdraw_password']").val();
+        var withdraw_amount = $("input[name='withdraw-amount']").val();
+        var password = $("input[name='withdraw-password']").val();
 
         if (is_null(withdraw_amount)) {
             alert('请输入提现金额');
