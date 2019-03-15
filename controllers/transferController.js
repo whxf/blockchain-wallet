@@ -1,4 +1,4 @@
-var userService = require('../services/userService');
+var user_service = require('../services/userService');
 var bcrypt = require('bcrypt-nodejs');
 require('date-utils');
 
@@ -23,7 +23,7 @@ var exports = {
         var sender = req.session.user.phone;
         var transfer_type = '2';
 
-        var query_user_result = await userService.getUserByPhone(sender);
+        var query_user_result = await user_service.getUserByPhone(sender);
         if (query_user_result.status === 1) {
             res.json(query_user_result);
         }
@@ -42,7 +42,7 @@ var exports = {
         if (bcrypt.compareSync(transfer_password, password) === false) {
             req.session.user.error_time += 1;
             if (req.session.user.error_time >= 5) {
-                var freeze_user_result = await userService.setUserFreezeTime(req.session.user.phone);
+                var freeze_user_result = await user_service.setUserFreezeTime(req.session.user.phone);
                 if (freeze_user_result.status === 0) {
                     res.json({
                         status: 1,
@@ -73,7 +73,7 @@ var exports = {
         }
 
         // 检查账户余额
-        var query_sender_balance_result = await userService.getBalance(sender);
+        var query_sender_balance_result = await user_service.getBalance(sender);
         if (query_sender_balance_result.status === 1) {
             res.json(query_sender_balance_result);
             return;
@@ -91,7 +91,7 @@ var exports = {
         sender_balance = sender_balance - transfer_amount;
         sender_balance = sender_balance.toFixed(2);
 
-        var query_receiver_balance_result = await userService.getBalance(receiver);
+        var query_receiver_balance_result = await user_service.getBalance(receiver);
         if (query_receiver_balance_result.status === 1) {
             res.json(query_receiver_balance_result);
             return;
@@ -112,8 +112,8 @@ var exports = {
         receiver_balance = receiver_balance.toFixed(2);
 
         // 修改账户余额
-        var set_sender_balance_result = await userService.setBalance(sender, sender_balance);
-        var set_receiver_balance_result = await userService.setBalance(receiver, receiver_balance);
+        var set_sender_balance_result = await user_service.setBalance(sender, sender_balance);
+        var set_receiver_balance_result = await user_service.setBalance(receiver, receiver_balance);
 
         if (set_sender_balance_result.status === 0
             && set_receiver_balance_result.status === 0) {
@@ -147,7 +147,7 @@ var exports = {
         var type = '1';
         var receiver = req.session.user.phone;
 
-        var query_user_result = await userService.getUserByPhone(receiver);
+        var query_user_result = await user_service.getUserByPhone(receiver);
         if (query_user_result.status === 1) {
             res.json(query_user_result);
         }
@@ -167,7 +167,7 @@ var exports = {
         if (bcrypt.compareSync(transfer_password, password) === false) {
             req.session.user.error_time += 1;
             if (req.session.user.error_time >= 5) {
-                var freeze_user_result = await userService.setUserFreezeTime(req.session.user.phone);
+                var freeze_user_result = await user_service.setUserFreezeTime(req.session.user.phone);
                 if (freeze_user_result.status === 0) {
                     res.json({
                         status: 1,
@@ -188,7 +188,7 @@ var exports = {
         }
 
         // 获取用户余额
-        var get_balance_result = await userService.getBalance(receiver);
+        var get_balance_result = await user_service.getBalance(receiver);
         if (get_balance_result.status === 1) {
             res.json(get_balance_result);
             return;
@@ -207,7 +207,7 @@ var exports = {
         // 修改账户余额
         var balance = parseFloat(get_balance_result.data.balance) + recharge_amount;
         balance = balance.toFixed(2);
-        var set_balance_result = await userService.setBalance(receiver, balance);
+        var set_balance_result = await user_service.setBalance(receiver, balance);
         if (set_balance_result.status === 1) {
             res.json(set_balance_result);
         } else {
@@ -234,7 +234,7 @@ var exports = {
         var type = '3';
         var receiver = 'alipay';
 
-        var query_user_result = await userService.getUserByPhone(sender);
+        var query_user_result = await user_service.getUserByPhone(sender);
         if (query_user_result.status === 1) {
             res.json(query_user_result);
         }
@@ -254,7 +254,7 @@ var exports = {
         if (bcrypt.compareSync(transfer_password, password) === false) {
             req.session.user.error_time += 1;
             if (req.session.user.error_time >= 5) {
-                var freeze_user_result = await userService.setUserFreezeTime(req.session.user.phone);
+                var freeze_user_result = await user_service.setUserFreezeTime(req.session.user.phone);
                 if (freeze_user_result.status === 0) {
                     res.json({
                         status: 1,
@@ -276,7 +276,7 @@ var exports = {
         req.session.user.error_time = 0;
 
         // 获取用户余额
-        var get_balance_result = await userService.getBalance(sender);
+        var get_balance_result = await user_service.getBalance(sender);
         if (get_balance_result.status === 1) {
             res.json(get_balance_result);
             return;
@@ -305,7 +305,7 @@ var exports = {
         // 修改账户余额
         var balance = parseFloat(get_balance_result.data.balance) - withdraw_amount;
         balance = balance.toFixed(2);
-        var set_balance_result = await userService.setBalance(sender, balance);
+        var set_balance_result = await user_service.setBalance(sender, balance);
         if (set_balance_result.status === 1) {
             res.json(set_balance_result);
         } else {

@@ -17,5 +17,5 @@ function checkPhone(phone) {
 }
 
 function checkLength(input) {
-    return input.length <= 50;
+    return input.length >= 50;
 }

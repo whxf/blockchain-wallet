@@ -26,7 +26,7 @@ router.post('/changePassword', user_controller.changePasswordMethod);
 router.post('/changeTransferPassword', user_controller.changeTransferPasswordMethod);
 router.post('/getInformation', async function (req, res, next) {
     if (req.session['user'] !== undefined) {
-        console.log(req.session.user.phone);
+        // console.log(req.session.user.phone);
         var query_user_result = await user_service.getUserByPhone(req.session.user.phone);
         res.json({
             status: 0,

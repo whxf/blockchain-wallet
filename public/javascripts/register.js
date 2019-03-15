@@ -114,7 +114,7 @@ $(function () {
     });
 
     $('#send-message').click(function () {
-        console.log('send-message');
+        // console.log('send-message');
         var phone = $("input[name='phone']").val();
         if (is_null(phone)) {
             alert('请输入电话号码');

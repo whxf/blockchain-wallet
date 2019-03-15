@@ -15,12 +15,12 @@ block content
                             div.label 密码
                             input(name='password').form-control(type="password")
                             p.text-right
-                                a(href='/changepwd').text-secondary  忘记密码
+                                a(href='/changePassword').text-secondary  忘记密码
                         button#button-login.btn.btn-secondary(type='button') 登录
                         p
                         a(href='/register')  注册新账户
                 div.col-lg-3.col-md-2
 
 block scripts
-    script(src='/javascripts/check_tools.js')
+    script(src='/javascripts/checkTools.js')
     script(src='/javascripts/login.js')

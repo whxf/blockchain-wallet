@@ -1,13 +1,14 @@
 'use strict';
 
-const FabricCAServices = require('fabric-ca-client');
+const fabric_ca_services = require('fabric-ca-client');
 const {FileSystemWallet, Gateway, X509WalletMixin} = require('fabric-network');
 const fs = require('fs');
 const path = require('path');
+const secret = require('../config/secret');
 
-const ccpPath = path.resolve('/home/ubuntu/graduation/fabric-demo/fabric-samples/basic-network', 'connection.json');
-const ccpJSON = fs.readFileSync(ccpPath, 'utf8');
-const ccp = JSON.parse(ccpJSON);
+const ccp_path = path.resolve(secret.fabric_network_path, 'connection.json');
+const ccp_json = fs.readFileSync(ccp_path, 'utf8');
+const ccp = JSON.parse(ccp_json);
 
 var createRecord = async function (sender, receiver, transfer_amount, transfer_type) {
     sender = sender.toString();
@@ -95,10 +96,7 @@ var queryRecord = async function (user_phone) {
 
         // Evaluate the specified transaction.
         const result = await contract.evaluateTransaction('queryRecord', user_phone);
-        console.log(`Transaction has been evaluated, result is: ${result}`);
-
-        // console.log(result.toString());
-
+        // console.log(`Transaction has been evaluated, result is: ${result}`);
 
         return {
             'status': 0,

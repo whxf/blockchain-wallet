@@ -1,20 +1,20 @@
 //Http相关
-var createError = require('http-errors');
+var create_error = require('http-errors');
 var express = require('express');
 var path = require('path');
 var logger = require('morgan');
 var session = require('express-session');
 var secret = require('./config/secret');
-const RedisStore = require('connect-redis')(session);
+const redis_store = require('connect-redis')(session);
 var redis_config = require('./config/db').redis_config;
 
 
 //路由
-var indexRouter = require('./routes/index');
-var apiRouter = require('./routes/api');
-var messageRouter = require('./routes/message');
-var userRouter = require('./routes/user');
-var transferRouter = require('./routes/transfer');
+var index_router = require('./routes/index');
+var api_router = require('./routes/api');
+var message_router = require('./routes/message');
+var user_router = require('./routes/user');
+var transfer_router = require('./routes/transfer');
 
 
 var app = express();
@@ -39,20 +39,20 @@ app.use(session({
     saveUninitialized: false,
     rolling: true,
     cookie: redis_config.cookie,
-    store: new RedisStore(redis_config.sessionStore)
+    store: new redis_store(redis_config.sessionStore)
 }));
 
 // 映射路由
-app.use('/', indexRouter);
-app.use('/api', apiRouter);
-app.use('/message', messageRouter);
-app.use('/user', userRouter);
-app.use('/transfer', transferRouter);
+app.use('/', index_router);
+app.use('/api', api_router);
+app.use('/message', message_router);
+app.use('/user', user_router);
+app.use('/transfer', transfer_router);
 
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-    next(createError(404));
+    next(create_error(404));
 });
 
 

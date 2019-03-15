@@ -35,8 +35,8 @@ var exports = {
         res.render('information');
     },
 
-    changepwd: function (req, res, next) {
-        res.render('changepwd');
+    changePassword: function (req, res, next) {
+        res.render('changePassword');
     },
 
 };

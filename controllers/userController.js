@@ -1,4 +1,4 @@
-var userService = require('../services/userService');
+var user_service = require('../services/userService');
 var bcrypt = require('bcrypt-nodejs');
 var secret = require('../config/secret');
 
@@ -7,9 +7,9 @@ var exports = {
     loginMethod: async function (req, res, next) {
         var input_phone = req.body.phone;
         var input_password = req.body.password;
-        var query_user_result = await userService.getUserByPhone(input_phone);
+        var query_user_result = await user_service.getUserByPhone(input_phone);
 
-        console.log(query_user_result);
+        // console.log(query_user_result);
         if (query_user_result.status === 1) {
             res.json({
                 status: 1,
@@ -58,7 +58,7 @@ var exports = {
         input_password = bcrypt.hashSync(input_password, secret.hash_bcrypt);
         input_transfer_password = bcrypt.hashSync(input_transfer_password, secret.hash_bcrypt);
 
-        var query_user_result = await userService.getUserByPhone(input_phone);
+        var query_user_result = await user_service.getUserByPhone(input_phone);
         if (query_user_result.status === 1) {
             res.json({
                 status: 1,
@@ -77,7 +77,7 @@ var exports = {
             return;
         }
 
-        var add_user_result = await userService.addUser(input_nickname, input_phone, input_password, input_transfer_password);
+        var add_user_result = await user_service.addUser(input_nickname, input_phone, input_password, input_transfer_password);
         if (add_user_result.status === 1) {
             res.json({
                 status: 1,
@@ -102,7 +102,8 @@ var exports = {
         var phone = req.session.user.phone;
         var new_nickname = req.body.nickname;
 
-        var set_nickname_result = await userService.setUserNickname(phone, new_nickname);
+        var set_nickname_result = await user_service.setUserNickname(phone, new_nickname);
+        console.log(set_nickname_result);
 
         if (set_nickname_result.status === 1) {
             res.json({
@@ -118,18 +119,11 @@ var exports = {
         }
     },
     changePasswordMethod: async function (req, res, next) {
-        if (req.session['user'] === undefined) {
-            res.json({
-                status: 1,
-                message: '请先登录',
-            });
-            return;
-        }
         var phone = req.body.phone;
         var input_password = req.body.password;
         input_password = bcrypt.hashSync(input_password, secret.hash_bcrypt);
 
-        var set_password_result = await userService.setUserPassword(phone, input_password);
+        var set_password_result = await user_service.setUserPassword(phone, input_password);
 
         if (set_password_result.status === 1) {
             res.json({
@@ -155,7 +149,7 @@ var exports = {
         var input_password = req.body.password;
         input_password = bcrypt.hashSync(input_password, secret.hash_bcrypt);
 
-        var set_transfer_password_result = await userService.setUserTransferPassword(phone, input_password);
+        var set_transfer_password_result = await user_service.setUserTransferPassword(phone, input_password);
 
         if (set_transfer_password_result.status === 1) {
             res.json({

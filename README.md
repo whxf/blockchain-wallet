@@ -38,8 +38,8 @@ https://wallet.xixilili.cn
 │   │   ├── alipay.png
 │   │   └── avatar.png
 │   ├── javascripts
-│   │   ├── changepwd.js
-│   │   ├── check_tools.js
+│   │   ├── changePassword.js
+│   │   ├── checkTools.js
 │   │   ├── dashboard.js
 │   │   ├── home.js
 │   │   ├── information.js

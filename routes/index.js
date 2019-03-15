@@ -12,6 +12,6 @@ router.get('/record', index_controller.record);
 router.get('/recharge', index_controller.recharge);
 router.get('/withdraw', index_controller.withdraw);
 router.get('/information', index_controller.information);
-router.get('/changepwd', index_controller.changepwd);
+router.get('/changePassword', index_controller.changePassword);
 
 module.exports = router;

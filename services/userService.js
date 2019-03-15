@@ -194,12 +194,4 @@ exports = {
     },
 };
 
-// async function f() {
-//     await exports.setBalance('15726672896', '10');
-//     // console.log(ret.data.balance);
-// }
-//
-// f();
-
-
 module.exports = exports;
