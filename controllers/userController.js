@@ -1,3 +1,9 @@
+/**
+ * @Description: 关于用户的各类方法
+ * @author Li Xi
+ * @date 2019-03-15
+*/
+
 var user_service = require('../services/userService');
 var bcrypt = require('bcrypt-nodejs');
 var secret = require('../config/secret');

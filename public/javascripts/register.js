@@ -1,3 +1,10 @@
+/**
+ * @Description: 对应register pug
+ * @author Li Xi
+ * @date 2019-03-15
+ */
+
+
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

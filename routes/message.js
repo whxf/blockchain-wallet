@@ -1,3 +1,10 @@
+/**
+ * @Description: 发送短信message相关api
+ * @author Li Xi
+ * @date 2019-03-15
+ */
+
+
 var express = require('express');
 var router = express.Router();
 var QcloudSms = require('qcloudsms_js');

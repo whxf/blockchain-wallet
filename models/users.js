@@ -1,3 +1,9 @@
+/**
+ * @Description: user model
+ * @author Li Xi
+ * @date 2019-03-15
+*/
+
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {

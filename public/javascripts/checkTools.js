@@ -1,3 +1,9 @@
+/**
+ * @Description: 用户输入格式检查
+ * @author Li Xi
+ * @date 2019-03-15
+*/
+
 function is_null(val) {
     if (val === null) {
         return val;

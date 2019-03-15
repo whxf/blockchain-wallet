@@ -17,6 +17,14 @@ db.User.sequelize.sync();
 var User = db.User;
 
 exports = {
+    /**
+     * 添加新用户
+     * @param nickname
+     * @param phone
+     * @param password  登录密码
+     * @param transfer_password  支付密码
+     * @returns {Promise<*>}
+     */
     addUser: async function (nickname, phone, password, transfer_password) {
         try {
             var user_result = await User.create({
@@ -37,6 +45,11 @@ exports = {
             };
         }
     },
+    /**
+     * 根据用户手机号查找用户
+     * @param phone
+     * @returns {Promise<*>}  根据result.data.column_name直接获取字段值
+     */
     getUserByPhone: async function (phone) {
         try {
             var result = await User.findAll({
@@ -51,7 +64,6 @@ exports = {
                     data: null
                 };
             }
-            // console.log('qweqweq',result);
             return {
                 status: 0,
                 message: '查询成功',
@@ -65,6 +77,11 @@ exports = {
             };
         }
     },
+    /**
+     * 根据用户手机号获取用户余额
+     * @param phone
+     * @returns {Promise<*>}  根据result.data.balance直接获取字段值
+     */
     getBalance: async function (phone) {
         try {
             var result = await User.findAll({
@@ -86,6 +103,12 @@ exports = {
             };
         }
     },
+    /**
+     * 根据用户手机号修改余额
+     * @param phone
+     * @param balance
+     * @returns {Promise<*>}
+     */
     setBalance: async function (phone, balance) {
         try {
             var result = await User.update({
@@ -107,6 +130,12 @@ exports = {
             };
         }
     },
+    /**
+     * 根据用户手机号修改用户昵称
+     * @param phone
+     * @param nickname
+     * @returns {Promise<*>}
+     */
     setUserNickname: async function (phone, nickname) {
         try {
             var result = await User.update({
@@ -128,6 +157,12 @@ exports = {
             };
         }
     },
+    /**
+     * 根据用户手机号修改用户登录密码
+     * @param phone
+     * @param password
+     * @returns {Promise<*>}
+     */
     setUserPassword: async function (phone, password) {
         try {
             var result = await User.update({
@@ -149,6 +184,12 @@ exports = {
             };
         }
     },
+    /**
+     * 根据用户手机号修改用户支付密码
+     * @param phone
+     * @param password
+     * @returns {Promise<*>}
+     */
     setUserTransferPassword: async function (phone, password) {
         try {
             var result = await User.update({
@@ -170,9 +211,15 @@ exports = {
             };
         }
     },
+    /**
+     * 根据手机号设置用户的冻结结束时间
+     * 每次冻结5小时，冻结结束时间是当前时间+5小时
+     * @param phone
+     * @returns {Promise<*>}
+     */
     setUserFreezeTime: async function (phone) {
         try {
-            var freeze_time = (new Date()).addHours(5);
+            var freeze_time = (new Date()).addHours(5); // 设置冻结结束时间
             var result = await User.update({
                 'freeze_time': freeze_time
             }, {

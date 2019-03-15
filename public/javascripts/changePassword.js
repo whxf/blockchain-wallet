@@ -1,3 +1,9 @@
+/**
+ * @Description: 对应changePassword pug
+ * @author Li Xi
+ * @date 2019-03-15
+*/
+
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

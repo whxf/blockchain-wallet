@@ -1,3 +1,10 @@
+/**
+ * @Description: 通用api，通常是直接查看session信息的方法
+ * @author Li Xi
+ * @date 2019-03-15
+ */
+
+
 var express = require('express');
 var router = express.Router();
 

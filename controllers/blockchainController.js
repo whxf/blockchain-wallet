@@ -1,3 +1,9 @@
+/**
+ * @Description: 与区块链网络交互，参考fabric sample
+ * @author Li Xi
+ * @date 2019-03-15 
+*/
+
 'use strict';
 
 const fabric_ca_services = require('fabric-ca-client');
@@ -10,6 +16,15 @@ const ccp_path = path.resolve(secret.fabric_network_path, 'connection.json');
 const ccp_json = fs.readFileSync(ccp_path, 'utf8');
 const ccp = JSON.parse(ccp_json);
 
+/**
+ * 创建交易记录
+ * 交易时间有chain code内部方法生成
+ * @param sender
+ * @param receiver
+ * @param transfer_amount
+ * @param transfer_type 交易类型
+ * @returns {Promise<*>}
+ */
 var createRecord = async function (sender, receiver, transfer_amount, transfer_type) {
     sender = sender.toString();
     receiver = receiver.toString();
@@ -66,7 +81,12 @@ var createRecord = async function (sender, receiver, transfer_amount, transfer_t
     }
 };
 
-
+/**
+ * 查找交易记录
+ * 交易记录最多查看最近100条，排序是按早时间从后到前排列
+ * @param user_phone
+ * @returns {Promise<*>}
+ */
 var queryRecord = async function (user_phone) {
     user_phone = user_phone.toString();
     try {

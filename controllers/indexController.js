@@ -1,3 +1,9 @@
+/**
+ * @Description: 页面渲染
+ * @author Li Xi
+ * @date 2019-03-15
+*/
+
 var exports = {
     login: function (req, res, next) {
         res.render('login');

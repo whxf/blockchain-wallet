@@ -1,3 +1,9 @@
+/**
+ * @Description: 关于交易的各类方法，包括：添加和查看
+ * @author Li Xi
+ * @date 2019-03-15
+*/
+
 var user_service = require('../services/userService');
 var bcrypt = require('bcrypt-nodejs');
 require('date-utils');

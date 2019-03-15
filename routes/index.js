@@ -1,3 +1,9 @@
+/**
+ * @Description: index相关api，页面的get
+ * @author Li Xi
+ * @date 2019-03-15
+ */
+
 var express = require('express');
 var router = express.Router();
 
