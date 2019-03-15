@@ -25,7 +25,7 @@ $(function () {
 
         $.ajax({
             method: "post",
-            url: "/login",
+            url: "/user/login",
             data: {phone: phone, password: password},
             success: function (res) {
                 if (res.status === 0) {

@@ -19,7 +19,7 @@ $(function () {
         }
         $.ajax({
             method: "post",
-            url: "/api/sendMessage",
+            url: "/message/sendMessage",
             data: {phone: phone},
             success: function (res) {
                 if (res.status === 1) {
@@ -70,7 +70,7 @@ $(function () {
                 if (code.toString() === verif_code.toString()) {
                     $.ajax({
                         method: "post",
-                        url: "/api/changePassword",
+                        url: "/user/changePassword",
                         data: {phone: phone, password: password},
                         success: function (res) {
                             alert(res.message);

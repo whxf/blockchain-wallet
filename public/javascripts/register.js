@@ -77,7 +77,7 @@ $(function () {
                 if (code.toString() === verif_code.toString()) {
                     $.ajax({
                         method: "post",
-                        url: "/register",
+                        url: "/user/register",
                         data: {
                             nickname: nickname,
                             phone: phone,
@@ -116,7 +116,7 @@ $(function () {
         }
         $.ajax({
             method: "post",
-            url: "/api/sendMessage",
+            url: "/message/sendMessage",
             data: {phone: phone},
             success: function (res) {
                 if (res.status === 1) {

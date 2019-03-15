@@ -8,21 +8,29 @@ $(function () {
     $(function () {
         var nickname;
         var balance;
-
-
         $.ajax({
             method: "post",
-            url: "/api/getUserInfo",
+            url: "/user/getInformation",
             success: function (res) {
                 if (res.status === 1) {
                     alert('请先登录');
                     window.location.assign('/login');
                 } else {
-                    nickname = res.nickname;
-                    balance = res.balance;
+                    nickname = res.data.nickname;
+                    balance = res.data.balance;
                     $("#hello-words").text(nickname + "，你好!");
                     $("#user-balance").text(balance.toString() + "元");
                 }
+            }
+        });
+    });
+
+    $('#logout').click(function () {
+        $.ajax({
+            method: "post",
+            url: "/user/logout",
+            success: function (res) {
+                window.location.assign('/');
             }
         });
     });

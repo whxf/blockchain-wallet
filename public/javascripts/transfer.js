@@ -34,7 +34,7 @@ $(function () {
 
         $.ajax({
             method: "post",
-            url: "/transfer",
+            url: "/transfer/transfer",
             data: {receiver: receiver, transfer_amount: transfer_amount, password: password},
             success: function (res) {
                 if (res.status === 0) {
@@ -71,7 +71,7 @@ $(function () {
 
         $.ajax({
             method: "post",
-            url: "/recharge",
+            url: "/transfer/recharge",
             data: {recharge_amount: recharge_amount, password: password},
             success: function (res) {
                 if (res.status === 0) {
@@ -108,7 +108,7 @@ $(function () {
 
         $.ajax({
             method: "post",
-            url: "/withdraw",
+            url: "/transfer/withdraw",
             data: {withdraw_amount: withdraw_amount, password: password},
             success: function (res) {
                 if (res.status === 0) {

@@ -72,7 +72,7 @@ $(function () {
         var user_phone;
         $.ajax({
             method: "post",
-            url: "/api/getSessionData",
+            url: "/api/getPhone",
             success: function (res) {
                 user_phone = res.phone;
             }
@@ -80,7 +80,7 @@ $(function () {
 
         $.ajax({
             method: "post",
-            url: "/api/getRecord",
+            url: "/transfer/getRecord",
             data: {start: 0},
             success: function (res) {
                 if (res.status === 0) {
@@ -93,7 +93,6 @@ $(function () {
                     }
                     var tbody = document.getElementById('table-body');
                     tbody.innerHTML = "";
-
                     for (var i in res.data) {
                         tbody.innerHTML += formatData(res.data[i], user_phone);
                     }

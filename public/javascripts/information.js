@@ -12,15 +12,15 @@ $(function () {
 
         $.ajax({
             method: "post",
-            url: "/api/getUserInfo",
+            url: "/user/getInformation",
             success: function (res) {
                 if (res.status === 1) {
                     alert('请先登录');
                     window.location.assign('/login');
                 } else {
-                    nickname = res.nickname;
-                    balance = res.balance;
-                    phone = res.phone;
+                    nickname = res.data.nickname;
+                    balance = res.data.balance;
+                    phone = res.data.phone;
 
                     var nickname_body = document.getElementById('nickname-input-box');
                     nickname_body.innerHTML = "<input type='text' class='form-control' name='nickname' placeholder='" + nickname + "'>";
@@ -44,7 +44,7 @@ $(function () {
 
         $.ajax({
             method: "post",
-            url: "/api/changeNickname",
+            url: "/user/changeNickname",
             data: {nickname: nickname},
             success: function (res) {
                 alert(res.message);
@@ -66,7 +66,7 @@ $(function () {
         }
         $.ajax({
             method: "post",
-            url: "/api/sendMessage",
+            url: "/message/sendMessage",
             data: {phone: phone},
             success: function (res) {
                 if (res.status === 1) {
@@ -117,7 +117,7 @@ $(function () {
                 if (code.toString() === verif_code.toString()) {
                     $.ajax({
                         method: "post",
-                        url: "/api/changePassword",
+                        url: "/user/changePassword",
                         data: {phone: phone, password: password},
                         success: function (res) {
                             alert(res.message);
@@ -170,7 +170,7 @@ $(function () {
                 if (code.toString() === verif_code.toString()) {
                     $.ajax({
                         method: "post",
-                        url: "/api/changeTransferPassword",
+                        url: "/user/changeTransferPassword",
                         data: {phone: phone, password: password},
                         success: function (res) {
                             alert(res.message);
