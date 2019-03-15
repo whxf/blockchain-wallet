@@ -15,3 +15,7 @@ function checkPhone(phone) {
     var pattern = /^1[0-9]{10}$/;
     return pattern.test(phone);
 }
+
+function checkLength(input) {
+    return input.length <= 50;
+}

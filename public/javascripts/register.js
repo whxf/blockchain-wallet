@@ -18,6 +18,11 @@ $(function () {
             alert('请输入昵称');
             return;
         }
+        if (checkLength(nickname)){
+            alert('昵称过长，请重新输入！');
+            nickname = "";
+            return;
+        }
         if (is_null(phone)) {
             alert('请输入电话号码');
             return;
@@ -34,27 +39,32 @@ $(function () {
             alert('请输入登录密码');
             return;
         }
+        if (checkLength(password)){
+            alert('登录密码过长，请重新输入！');
+            return;
+        }
         if (is_null(confirm_password)) {
             alert('请确认登录密码');
             return;
         }
-
         if (password !== confirm_password) {
             alert('登录密码不同，请重新输入登录密码');
             password = '';
             confirm_password = '';
             return;
         }
-
         if (is_null(transfer_password)) {
             alert('请输入支付密码');
+            return;
+        }
+        if (checkLength(transfer_password)){
+            alert('支付密码过长，请重新输入！');
             return;
         }
         if (is_null(confirm_transfer_password)) {
             alert('请确认支付密码');
             return;
         }
-
         if (transfer_password !== confirm_transfer_password) {
             alert('支付密码不同，请重新输入支付密码');
             transfer_password = '';

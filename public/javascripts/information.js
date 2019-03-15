@@ -35,10 +35,14 @@ $(function () {
     $('#button-confirm-change-nickname').click(function () {
         var nickname = $("input[name='nickname']").val();
 
-        console.log(nickname);
-
         if (is_null(nickname)) {
             alert('请输入新昵称！');
+            return;
+        }
+
+        if (checkLength(nickname)){
+            alert('昵称过长，请重新输入！');
+            nickname = "";
             return;
         }
 
@@ -88,6 +92,11 @@ $(function () {
 
         if (is_null(password)) {
             alert('请输入新登录密码');
+            return;
+        }
+        if (checkLength(password)){
+            alert('密码过长，请重新输入！');
+            password = "";
             return;
         }
         if (is_null(confirm_password)) {
@@ -145,6 +154,11 @@ $(function () {
         }
         if (is_null(confirm_password)) {
             alert('请确认支付密码');
+            return;
+        }
+        if (checkLength(password)){
+            alert('密码过长，请重新输入！');
+            password = "";
             return;
         }
 
