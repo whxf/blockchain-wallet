@@ -46,6 +46,8 @@ $(function () {
                     transfer_amount = '';
                     if (res.message === '请先登录') {
                         window.location.assign('/login');
+                    } else {
+                        window.location.assign('/transfer');
                     }
                 }
             }
@@ -82,6 +84,8 @@ $(function () {
                     recharge_amount = '';
                     if (res.message === '请先登录') {
                         window.location.assign('/login');
+                    } else {
+                        window.location.assign('/recharge');
                     }
                 }
             }
@@ -119,6 +123,8 @@ $(function () {
                     withdraw_amount = '';
                     if (res.message === '请先登录') {
                         window.location.assign('/login');
+                    } else {
+                        window.location.assign('/withdraw');
                     }
                 }
             }
