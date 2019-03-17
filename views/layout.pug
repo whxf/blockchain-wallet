@@ -16,15 +16,31 @@ html(lang="en")
         block styles
 
 
-    body(data-spy="scroll",data-target=".scrollspy")
+    body(data-spy="scroll", data-target=".scrollspy")
         div.navbar.navbar-expand-lg.fixed-top.navbar-dark.bg-primary
             div.container
                 a(href='/').navbar-brand BCwallet
 
         block content
 
-        //nav.card-footer.fixed-bottom.bg-light
-        //    p.text-center © 2018-2019 Powered By 李熙 | 京ICP备18022911号
+        nav.card-footer.bg-light.pad-left-lg
+            div.row
+                div.col-lg-5.col-md-5.col-sm-12
+                    p(style='font-size:20px; font-weight:bold') 关于我们
+                    p 开发者：李熙
+                    p 地址：北京 海淀 北京航空航天大学
+                    p 源代码：
+                        a(href='https://github.com/whxf/blockchain-wallet') Github
+                    p 联系方式： whxf_lixi@buaa.edu.cn
+                div.col-lg-7.col-md-7.col-sm-12
+                    p(style='font-size:20px; font-weight:bold') 声明
+                    p 本项目为毕业设计项目并非商用项目。区块链模块需要实现的功能有：存储交易记录、存储交易记录、查询交易和身份认证。
+                    p 需要说明的是：本项目中有关充值、提现、转账的功能均为模拟操作，不涉及任何实际价值的转移与交易。
+
+
+            p.text-center © 2018-2019 | 京ICP备18022911号
+
+
 
         script(src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js")
         script(src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js")
