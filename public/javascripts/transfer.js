@@ -20,21 +20,36 @@ $(function () {
 
         if (is_null(receiver)) {
             alert('请输入收款人');
+            receiver = '';
+            transfer_amount = '';
+            password = '';
+            window.location.assign('/transfer');
             return;
         }
         if (checkPhone(receiver) === false) {
             alert('请输入有效电话号码');
+            receiver = '';
+            transfer_amount = '';
+            password = '';
+            window.location.assign('/transfer');
             return;
         }
         if (is_null(transfer_amount)) {
             alert('请输入转账金额');
+            receiver = '';
+            transfer_amount = '';
+            password = '';
+            window.location.assign('/transfer');
             return;
         }
         if (checkmoney(transfer_amount) === false ||
             parseFloat(transfer_amount) <= 0.0
         ) {
             alert('请输入合法金额');
+            receiver = '';
             transfer_amount = '';
+            password = '';
+            window.location.assign('/transfer');
             return;
         }
 
@@ -50,6 +65,7 @@ $(function () {
                     alert(res.message);
                     receiver = '';
                     transfer_amount = '';
+                    password = '';
                     if (res.message === '请先登录') {
                         window.location.assign('/login');
                     } else {
@@ -66,6 +82,9 @@ $(function () {
         var password = $("input[name='recharge-password']").val();
         if (is_null(recharge_amount)) {
             alert('请输入充值金额');
+            recharge_amount = '';
+            password = '';
+            window.location.assign('/recharge');
             return;
         }
 
@@ -74,6 +93,8 @@ $(function () {
         ) {
             alert('请输入合法金额');
             recharge_amount = '';
+            password = '';
+            window.location.assign('/recharge');
             return;
         }
 
@@ -88,6 +109,7 @@ $(function () {
                 } else {
                     alert(res.message);
                     recharge_amount = '';
+                    password = '';
                     if (res.message === '请先登录') {
                         window.location.assign('/login');
                     } else {
@@ -105,6 +127,9 @@ $(function () {
 
         if (is_null(withdraw_amount)) {
             alert('请输入提现金额');
+            withdraw_amount = '';
+            password = '';
+            window.location.assign('/withdraw');
             return;
         }
 
@@ -113,6 +138,8 @@ $(function () {
         ) {
             alert('请输入合法金额');
             withdraw_amount = '';
+            password = '';
+            window.location.assign('/withdraw');
             return;
         }
 
@@ -127,6 +154,7 @@ $(function () {
                 } else {
                     alert(res.message);
                     withdraw_amount = '';
+                    password = '';
                     if (res.message === '请先登录') {
                         window.location.assign('/login');
                     } else {
