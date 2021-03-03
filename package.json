@@ -22,7 +22,7 @@
     "mysql": "^2.16.0",
     "mysql2": "^1.6.5",
     "passport-local": "^1.0.0",
-    "pug": "^2.0.3",
+    "pug": "^3.0.1",
     "qcloudsms_js": "^0.1.1",
     "redis-connector": "0.0.0-deprecate",
     "sequelize": "^5.3.0",
